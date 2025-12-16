@@ -4,44 +4,101 @@ import AboutContact from "./components/aboutcontact";
 
 export default function Home() {
   return (
-    <main className="grid-bg min-h-screen flex flex-col justify-between p-6 md:p-12">
-      {/* HEADER / NAVIGATION */}
-      <nav className="flex justify-between items-start uppercase text-sm font-bold tracking-widest border-b border-black/10 pb-6">
-        <div>
-          <p>NINO DUQUE</p>
-          <p className="text-gray-500">Developer Portfolio</p>
-        </div>
-        <div className="flex gap-8">
-          <Link href="#work" className="hover:line-through decoration-2">Work</Link>
-          <Link href="#about" className="hover:line-through decoration-2">About</Link>
-          <Link href="#contact" className="hover:line-through decoration-2">Contact</Link>
+    <main className="bg-[#0a0a0a] text-[#ededed]">
+      {/* FIXED NAVIGATION */}
+      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#0a0a0a]/80 border-b border-[#2a2a2a]">
+        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+          <div className="flex items-center gap-3">
+            <div className="status-dot"></div>
+            <span className="font-bold text-sm tracking-wide">NINO DUQUE</span>
+          </div>
+          <div className="flex gap-8 text-sm font-medium">
+            <Link href="#home" className="nav-link">Home</Link>
+            <Link href="#about" className="nav-link">About</Link>
+            <Link href="#work" className="nav-link">Projects</Link>
+            <Link href="#contact" className="nav-link">Contact</Link>
+          </div>
         </div>
       </nav>
 
-      {/* HERO SECTION - MASSIVE TEXT */}
-      <section className="flex-grow flex flex-col justify-center py-20">
-        <h1 className="text-[12vw] leading-[0.85] font-black uppercase tracking-tighter text-black mix-blend-multiply">
-          Creative <br />
-          <span className="text-gray-400">Developer</span>
-        </h1>
-        
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-black/10 pt-6">
-          <p className="text-xl md:text-2xl max-w-md font-medium">
-            Creating digital experiences with a focus on typography, minimalism, and code.
-          </p>
-          <div className="flex items-end justify-start md:justify-end">
-             <div className="animate-bounce text-4xl">↓</div>
+      {/* HERO SECTION */}
+      <section id="home" className="section-full relative">
+        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          {/* Left side - Main content */}
+          <div>
+            <p className="section-label">Web Developer / System Administrator</p>
+            <h1 className="text-5xl md:text-7xl font-black leading-tight mb-6">
+              Hi, I&apos;m <span className="gradient-text">Nino</span>
+            </h1>
+            <p className="text-lg md:text-xl text-[#888] max-w-lg mb-8 leading-relaxed">
+              Dynamic developer and system administrator with a passion for creating
+              robust digital systems and clean, efficient code. Based in the Philippines.
+            </p>
+            <div className="flex gap-4 flex-wrap">
+              <Link href="#work" className="btn-primary">
+                View Projects
+                <span>→</span>
+              </Link>
+              <Link href="#contact" className="btn-outline">
+                Get in Touch
+              </Link>
+            </div>
           </div>
+
+          {/* Right side - Terminal card */}
+          <div className="terminal-card">
+            <div className="terminal-header">
+              <div className="terminal-dot red"></div>
+              <div className="terminal-dot yellow"></div>
+              <div className="terminal-dot green"></div>
+              <span className="ml-4 text-xs text-[#666]">~/information</span>
+            </div>
+            <div className="terminal-body">
+              <p><span className="terminal-prompt">$</span> cat profile.json</p>
+              <div className="mt-4 text-[#888]">
+                <p>{`{`}</p>
+                <p className="ml-4">&quot;name&quot;: <span className="text-[#00ff88]">&quot;Nino Duque&quot;</span>,</p>
+                <p className="ml-4">&quot;location&quot;: <span className="text-[#00ff88]">&quot;Philippines&quot;</span>,</p>
+                <p className="ml-4">&quot;focus&quot;: <span className="text-[#00ff88]">&quot;System Admin & Web Dev&quot;</span>,</p>
+                <p className="ml-4">&quot;status&quot;: <span className="text-[#00ff88]">&quot;Available for work&quot;</span></p>
+                <p>{`}`}</p>
+              </div>
+              <p className="mt-4"><span className="terminal-prompt">$</span> <span className="animate-pulse">_</span></p>
+            </div>
+          </div>
+        </div>
+
+        {/* Tech Stack */}
+        <div className="absolute bottom-8 left-0 right-0 px-6">
+          <div className="max-w-7xl mx-auto">
+            <p className="text-xs text-[#666] mb-3 font-mono">~/TECH STACK</p>
+            <div className="flex flex-wrap gap-2">
+              {["Next.js", "React", "TypeScript", "Tailwind", "VB.NET", "Docker", "Linux", "MySQL"].map((tech) => (
+                <span key={tech} className="tech-tag">{tech}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="scroll-indicator">
+          <span className="text-xs">Scroll</span>
+          <span>↓</span>
         </div>
       </section>
 
-      <ProjectList />
+      {/* ABOUT SECTION */}
       <AboutContact />
-      
+
+      {/* PROJECTS SECTION */}
+      <ProjectList />
+
       {/* FOOTER */}
-      <footer className="flex justify-between items-end text-xs uppercase font-bold tracking-widest pt-6 border-t border-black/10">
-        <p>© 2025</p>
-        <p>Based in Philippines</p>
+      <footer className="border-t border-[#2a2a2a] py-8 px-6">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-[#666]">© 2025 Nino Duque. All rights reserved.</p>
+          <p className="text-sm text-[#666]">Caffeine Driven Developer ☕</p>
+        </div>
       </footer>
     </main>
   );
