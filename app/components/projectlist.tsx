@@ -43,61 +43,68 @@ export default function ProjectList() {
   ];
 
   return (
-    <section id="work" className="section-full bg-[#0a0a0a]">
-      <div className="max-w-7xl mx-auto w-full">
-        <p className="section-label">SELECTED WORK</p>
-        <h2 className="text-4xl md:text-5xl font-black mb-12">
-          Featured Projects
-        </h2>
+    <section id="work" className="min-h-screen py-24 px-6 border-t border-[#111111]">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="mb-16">
+          <p className="text-xs font-mono text-[#666] tracking-widest mb-4">(03) — WORK</p>
+          <h2 className="text-6xl md:text-8xl font-black tracking-tighter">
+            SELECTED<br />WORKS
+          </h2>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Project List */}
+        <div className="border-t border-[#111111]">
           {projects.map((project) => (
             <div
               key={project.id}
-              className="project-card group cursor-pointer"
+              className="py-12 border-b border-[#111111] group cursor-pointer hover:bg-white/50 transition-colors"
             >
-              {/* Project number */}
-              <div className="flex justify-between items-start mb-4">
-                <span className="text-xs font-mono text-[#00ff88]">
-                  {project.id}
+              <div className="grid grid-cols-12 gap-4 items-start">
+                {/* Project number */}
+                <span className="col-span-2 md:col-span-1 text-sm font-mono text-[#666] group-hover:translate-x-2 transition-transform">
+                  ({project.id})
                 </span>
-                <span className="text-xs text-[#666]">{project.year}</span>
-              </div>
 
-              {/* Title */}
-              <h3 className="text-xl md:text-2xl font-bold mb-2 group-hover:text-[#00ff88] transition-colors">
-                {project.title}
-              </h3>
+                {/* Main content */}
+                <div className="col-span-10 md:col-span-7">
+                  {/* Title */}
+                  <h3 className="text-2xl md:text-3xl font-black mb-3 group-hover:underline transition-colors tracking-tight">
+                    {project.title.toUpperCase()}
+                  </h3>
 
-              {/* Category */}
-              <p className="text-sm text-[#666] font-mono mb-4">
-                [{project.category}]
-              </p>
+                  {/* Description */}
+                  <p className="text-[#666] text-sm leading-relaxed mb-4 max-w-xl">
+                    {project.description}
+                  </p>
 
-              {/* Description */}
-              <p className="text-[#888] text-sm leading-relaxed mb-6">
-                {project.description}
-              </p>
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-xs px-3 py-1 border border-[#111111] text-[#666] font-mono"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
 
-              {/* Tags */}
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs px-2 py-1 bg-[#1a1a1a] rounded text-[#888]"
-                  >
-                    {tag}
+                {/* Meta */}
+                <div className="col-span-12 md:col-span-4 flex md:flex-col md:items-end gap-4 mt-4 md:mt-0">
+                  <span className="text-xs font-mono text-[#666]">
+                    [{project.category.toUpperCase()}]
                   </span>
-                ))}
+                  <span className="text-xs font-mono text-[#666]">{project.year}</span>
+                  <a
+                    href={project.link}
+                    className="text-sm font-mono text-[#111] border border-[#111] px-3 py-1 hover:bg-[#111] hover:text-[#F3F3F3] transition-all opacity-0 group-hover:opacity-100"
+                  >
+                    VIEW →
+                  </a>
+                </div>
               </div>
-
-              {/* View link */}
-              <a
-                href={project.link}
-                className="inline-flex items-center gap-2 text-sm font-medium text-[#00ff88] opacity-0 group-hover:opacity-100 transition-opacity"
-              >
-                View Project <span>→</span>
-              </a>
             </div>
           ))}
         </div>

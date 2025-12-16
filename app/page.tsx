@@ -1,103 +1,83 @@
 import Link from "next/link";
 import ProjectList from "./components/projectlist";
-import AboutContact from "./components/aboutcontact";
+import About from "./components/about";
+import Contact from "./components/contact";
 
 export default function Home() {
   return (
-    <main className="bg-[#0a0a0a] text-[#ededed]">
-      {/* FIXED NAVIGATION */}
-      <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md bg-[#0a0a0a]/80 border-b border-[#2a2a2a]">
+    <main className="bg-[#F3F3F3] text-[#111111]">
+      {/* SWISS STYLE FIXED NAVIGATION */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#F3F3F3]/90 backdrop-blur-sm border-b border-[#111111]">
         <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          <div className="flex items-center gap-3">
-            <div className="status-dot"></div>
-            <span className="font-bold text-sm tracking-wide">NINO DUQUE</span>
-          </div>
-          <div className="flex gap-8 text-sm font-medium">
-            <Link href="#home" className="nav-link">Home</Link>
-            <Link href="#about" className="nav-link">About</Link>
-            <Link href="#work" className="nav-link">Projects</Link>
-            <Link href="#contact" className="nav-link">Contact</Link>
+          <span className="text-sm font-black tracking-tight">NINO DUQUE</span>
+          <div className="flex items-center gap-8">
+            <a href="#home" className="text-xs font-mono text-[#666] hover:text-[#111] transition-colors">HOME</a>
+            <a href="#about" className="text-xs font-mono text-[#666] hover:text-[#111] transition-colors">ABOUT</a>
+            <a href="#work" className="text-xs font-mono text-[#666] hover:text-[#111] transition-colors">WORK</a>
+            <a href="#contact" className="text-xs font-mono text-[#666] hover:text-[#111] transition-colors">CONTACT</a>
           </div>
         </div>
       </nav>
 
-      {/* HERO SECTION */}
-      <section id="home" className="section-full relative">
-        <div className="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left side - Main content */}
-          <div>
-            <p className="section-label">Web Developer / System Administrator</p>
-            <h1 className="text-5xl md:text-7xl font-black leading-tight mb-6">
-              Hi, I&apos;m <span className="gradient-text">Nino</span>
-            </h1>
-            <p className="text-lg md:text-xl text-[#888] max-w-lg mb-8 leading-relaxed">
-              Dynamic developer and system administrator with a passion for creating
-              robust digital systems and clean, efficient code. Based in the Philippines.
-            </p>
-            <div className="flex gap-4 flex-wrap">
-              <Link href="#work" className="btn-primary">
-                View Projects
-                <span>→</span>
-              </Link>
-              <Link href="#contact" className="btn-outline">
-                Get in Touch
-              </Link>
+      {/* HERO SECTION - Massive Typography */}
+      <section id="home" className="min-h-screen flex flex-col justify-center px-6 pt-20">
+        <div className="max-w-7xl mx-auto w-full">
+          <p className="text-xs font-mono text-[#666] tracking-widest mb-6">(01) — INTRODUCTION</p>
+          <h1 className="text-[12vw] md:text-[10vw] font-black leading-[0.85] tracking-tighter mb-8">
+            CREATIVE<br />DEVELOPER
+          </h1>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+            <div>
+              <p className="text-lg text-[#666] leading-relaxed max-w-md">
+                System administrator and web developer crafting robust digital systems with clean, efficient code. Based in the Philippines.
+              </p>
             </div>
-          </div>
-
-          {/* Right side - Terminal card */}
-          <div className="terminal-card">
-            <div className="terminal-header">
-              <div className="terminal-dot red"></div>
-              <div className="terminal-dot yellow"></div>
-              <div className="terminal-dot green"></div>
-              <span className="ml-4 text-xs text-[#666]">~/information</span>
-            </div>
-            <div className="terminal-body">
-              <p><span className="terminal-prompt">$</span> cat profile.json</p>
-              <div className="mt-4 text-[#888]">
-                <p>{`{`}</p>
-                <p className="ml-4">&quot;name&quot;: <span className="text-[#00ff88]">&quot;Nino Duque&quot;</span>,</p>
-                <p className="ml-4">&quot;location&quot;: <span className="text-[#00ff88]">&quot;Philippines&quot;</span>,</p>
-                <p className="ml-4">&quot;focus&quot;: <span className="text-[#00ff88]">&quot;System Admin & Web Dev&quot;</span>,</p>
-                <p className="ml-4">&quot;status&quot;: <span className="text-[#00ff88]">&quot;Available for work&quot;</span></p>
-                <p>{`}`}</p>
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-4">
+                <span className="text-xs font-mono text-[#666]">[ROLE]</span>
+                <span className="text-sm font-medium">System Admin / Web Developer</span>
               </div>
-              <p className="mt-4"><span className="terminal-prompt">$</span> <span className="animate-pulse">_</span></p>
+              <div className="flex items-center gap-4">
+                <span className="text-xs font-mono text-[#666]">[LOCATION]</span>
+                <span className="text-sm font-medium">Philippines</span>
+              </div>
+              <div className="flex items-center gap-4">
+                <span className="text-xs font-mono text-[#666]">[STATUS]</span>
+                <span className="text-sm font-medium">Available for Work</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Tech Stack */}
-        <div className="absolute bottom-8 left-0 right-0 px-6">
-          <div className="max-w-7xl mx-auto">
-            <p className="text-xs text-[#666] mb-3 font-mono">~/TECH STACK</p>
-            <div className="flex flex-wrap gap-2">
+          {/* Tech Stack */}
+          <div className="mt-16 pt-8 border-t border-[#111111]">
+            <p className="text-xs font-mono text-[#666] mb-4">TECH STACK</p>
+            <div className="flex flex-wrap gap-3">
               {["Next.js", "React", "TypeScript", "Tailwind", "VB.NET", "Docker", "Linux", "MySQL"].map((tech) => (
                 <span key={tech} className="tech-tag">{tech}</span>
               ))}
             </div>
           </div>
         </div>
-
-        {/* Scroll indicator */}
-        <div className="scroll-indicator">
-          <span className="text-xs">Scroll</span>
-          <span>↓</span>
-        </div>
       </section>
 
       {/* ABOUT SECTION */}
-      <AboutContact />
+      <About />
 
       {/* PROJECTS SECTION */}
       <ProjectList />
 
+      {/* CONTACT SECTION */}
+      <Contact />
+
       {/* FOOTER */}
-      <footer className="border-t border-[#2a2a2a] py-8 px-6">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-[#666]">© 2025 Nino Duque. All rights reserved.</p>
-          <p className="text-sm text-[#666]">Caffeine Driven Developer ☕</p>
+      <footer className="border-t border-[#111111] py-12 px-6">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-xs font-mono text-[#666]">© 2025 NINO DUQUE. ALL RIGHTS RESERVED.</p>
+          <div className="flex items-center gap-8">
+            <a href="#" className="text-xs font-mono text-[#666] hover:text-[#111] transition-colors">LINKEDIN</a>
+            <a href="#" className="text-xs font-mono text-[#666] hover:text-[#111] transition-colors">GITHUB</a>
+            <a href="#" className="text-xs font-mono text-[#666] hover:text-[#111] transition-colors">EMAIL</a>
+          </div>
         </div>
       </footer>
     </main>
