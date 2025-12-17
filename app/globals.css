@@ -76,7 +76,7 @@ body {
 
 /* Animated gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, var(--accent), #00d4ff, var(--accent));
+  background: linear-gradient(135deg, #ff7eb3, #ff758c, #ff7eb3);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -91,16 +91,35 @@ body {
 
 /* Status indicator */
 .status-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--accent);
+  width: 12px;
+  height: 12px;
+  background: #00ff88;
   border-radius: 50%;
   animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+/* Status Header Styles */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #111111;
+}
+
+header h1 {
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-align: center;
 }
 
 /* Project card hover effect */
@@ -231,47 +250,98 @@ body {
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(10, 10, 10, 0.9);
   padding: 1rem 2.5rem;
-  border: 2px solid #ededed;
-  backdrop-filter: blur(10px);
+ 
   z-index: 50;
 }
 
-/* Swiss-style navigation links */
-.nav-link-swiss {
-  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #888;
-  text-decoration: none;
-  padding: 0.5rem 1rem;
-  transition: all 0.2s ease;
-  position: relative;
+/* Dock Navigation - MacBook style */
+.dock-nav {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  padding: 1rem 2.5rem;
+
+  
+  z-index: 50;
 }
 
-.nav-link-swiss:hover {
-  background: #ededed;
-  color: #0a0a0a;
-}
-
-/* Keep old dock-item styles for backward compatibility */
 .dock-item {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.3s ease;
+  font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
   text-decoration: none;
-  color: var(--muted);
+  padding: 0.5rem 0;
+  transition: all 0.3s ease;
+}
+
+.dock-item::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: #111111;
+  transition: width 0.3s ease;
+}
+
+.dock-item:hover {
+  color: #111111;
+  transform: scale(1.1);
 }
 
 .dock-item:hover::after {
   width: 100%;
 }
 
+/* Dock Navigation Styles */
+.dock-navigation {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 0.5rem 1rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dock-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: #333;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  transition: transform 0.2s, color 0.2s;
+}
+
 .dock-item:hover {
-  transform: scale(1.2);
-  color: var(--accent); /* Change text color on hover */
+  transform: scale(1.1);
+  color: #0070f3;
+}
+
+.icon {
+  font-size: 1.5rem;
+}
+
+.label {
+  margin-top: 0.25rem;
 }
