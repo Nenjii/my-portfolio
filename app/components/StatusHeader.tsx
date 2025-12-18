@@ -55,9 +55,9 @@ export default function StatusHeader({
   return (
     <header className="flex items-center justify-between py-4 px-6 border-b border-[#111111] fixed top-0 left-0 w-full bg-[#4169E1]/70 backdrop-blur-md z-50">
       {/* Left: Status Section */}
-      <div className="flex items-center" style={{ gap: "1rem" }}> {/* Added inline gap style */}
-        <span className="text-xs font-medium text-black" style={{ fontSize: "0.75rem" }}>Available</span> {/* Explicit inline style fallback */}
-        <div className="status-dot flex-shrink-0"></div>
+      <div className="flex items-center gap-4">
+        <span className="text-xs font-medium text-black">Available</span>
+        <div className="status-dot shrink-0"></div>
         <TypewriterText
           texts={statuses}
           typingSpeed={80}
@@ -65,13 +65,12 @@ export default function StatusHeader({
           pauseDuration={3000}
           loop={true}
           className="text-xs font-medium text-black"
-          style={{ fontSize: "0.75rem" }} /* Explicit inline style fallback */
           showCursor={false}
         />
       </div>
 
       {/* Center: Logo Placeholder - Replace with your logo */}
-      <div className="absolute left-1/2 transform -translate-x-1/2">
+      <div className="absolute left-1/2 -translate-x-1/2">
         {/* TODO: Replace this placeholder with your actual logo */}
         {/* Example: <Image src="/logo.png" alt="Logo" width={40} height={40} /> */}
         <div className="w-10 h-10 border border-dashed border-white rounded flex items-center justify-center text-xs text-white font-mono">
@@ -81,7 +80,7 @@ export default function StatusHeader({
 
       {/* Right: Date/Time */}
       {showTime && currentTime && (
-        <div className="text-xs font-mono text-white" style={{ color: "white" }}>
+        <div className="text-xs font-mono text-white">
           {currentTime} {timezoneLabel}
         </div>
       )}
