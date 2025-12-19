@@ -43,26 +43,26 @@ export default function ProjectList() {
   ];
 
   return (
-    <section id="work" className="min-h-screen py-24 px-6 border-t border-[#111111]">
+    <section id="work" className="min-h-screen py-24 px-6 border-t border-[var(--border)]/20">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-16">
-          <p className="text-xs font-mono text-[#666] tracking-widest mb-4">(03) — WORK</p>
+          <p className="text-xs font-mono text-[var(--muted)] tracking-widest mb-4">(03) — WORK</p>
           <h2 className="text-6xl md:text-8xl font-black tracking-tighter">
             SELECTED<br />WORKS
           </h2>
         </div>
 
         {/* Project List */}
-        <div className="border-t border-[#111111]">
+        <div className="border-t border-[var(--border)]/20">
           {projects.map((project) => (
             <div
               key={project.id}
-              className="py-12 border-b border-[#111111] group cursor-pointer hover:bg-white/50 transition-colors"
+              className="py-12 border-b border-[var(--border)]/20 group cursor-pointer hover:bg-[var(--foreground)]/5 transition-colors"
             >
               <div className="grid grid-cols-12 gap-4 items-start">
                 {/* Project number */}
-                <span className="col-span-2 md:col-span-1 text-sm font-mono text-[#666] group-hover:translate-x-2 transition-transform">
+                <span className="col-span-2 md:col-span-1 text-sm font-mono text-[var(--muted)] group-hover:translate-x-2 transition-transform">
                   ({project.id})
                 </span>
 
@@ -74,7 +74,7 @@ export default function ProjectList() {
                   </h3>
 
                   {/* Description */}
-                  <p className="text-[#666] text-sm leading-relaxed mb-4 max-w-xl">
+                  <p className="text-[var(--muted)] text-sm leading-relaxed mb-4 max-w-xl">
                     {project.description}
                   </p>
 
@@ -83,7 +83,7 @@ export default function ProjectList() {
                     {project.tags.map((tag) => (
                       <span
                         key={tag}
-                        className="text-xs px-3 py-1 border border-[#111111] text-[#666] font-mono"
+                        className="text-xs px-3 py-1 border border-[var(--border)]/30 text-[var(--muted)] font-mono"
                       >
                         {tag}
                       </span>
@@ -93,13 +93,13 @@ export default function ProjectList() {
 
                 {/* Meta */}
                 <div className="col-span-12 md:col-span-4 flex md:flex-col md:items-end gap-4 mt-4 md:mt-0">
-                  <span className="text-xs font-mono text-[#666]">
+                  <span className="text-xs font-mono text-[var(--muted)]">
                     [{project.category.toUpperCase()}]
                   </span>
-                  <span className="text-xs font-mono text-[#666]">{project.year}</span>
+                  <span className="text-xs font-mono text-[var(--muted)]">{project.year}</span>
                   <a
                     href={project.link}
-                    className="text-sm font-mono text-[#111] border border-[#111] px-3 py-1 hover:bg-[#111] hover:text-[#F3F3F3] transition-all opacity-0 group-hover:opacity-100"
+                    className="text-sm font-mono text-[var(--foreground)] border border-[var(--border)] px-3 py-1 hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all opacity-0 group-hover:opacity-100"
                   >
                     VIEW →
                   </a>

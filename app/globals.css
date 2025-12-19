@@ -15,6 +15,17 @@
   --accent: #111111;
   --muted: #666666;
   --border: #111111;
+  --grid-color: rgba(17, 17, 17, 0.06);
+}
+
+/* Dark Mode - Inverted Swiss Editorial */
+.dark {
+  --background: #0A0A0A;
+  --foreground: #F3F3F3;
+  --accent: #F3F3F3;
+  --muted: #999999;
+  --border: #F3F3F3;
+  --grid-color: rgba(243, 243, 243, 0.06);
 }
 
 * {
@@ -32,9 +43,10 @@ body {
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   /* Swiss Grid Background */
   background-image:
-    linear-gradient(rgba(17, 17, 17, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(17, 17, 17, 0.03) 1px, transparent 1px);
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
   background-size: 20px 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Full viewport sections */
@@ -83,12 +95,20 @@ body {
 
 /* Animated gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #ff7eb3, #ff758c, #ff7eb3);
+  background: linear-gradient(135deg, #61a5f3, #007AFF, #0b50a0);
   background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   animation: gradient-shift 3s ease infinite;
+}
+
+.dark .gradient-text {
+  background: linear-gradient(135deg, #7ab8ff, #4d9fff, #2d7fdf);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 @keyframes gradient-shift {

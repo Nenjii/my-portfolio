@@ -4,10 +4,11 @@ import Contact from "./components/contact";
 import StatusHeader from "./components/StatusHeader";
 import RoleTypewriter from "./components/RoleTypewriter";
 import GradientText from "./components/GradientText";
+import NavigationDock from "./components/NavigationDock";
 
 export default function Home() {
   return (
-    <main className="bg-[#F3F3F3] text-[#111111]">
+    <main className="bg-[var(--background)] text-[var(--foreground)] transition-colors duration-300">
       {/* STATUS HEADER - Separate component for easy modification */}
       <StatusHeader
         statuses={["Brewing Coffee ☕", "Accepting Projects 🚀", "Available for Work ✨"]}
@@ -16,32 +17,13 @@ export default function Home() {
         timezoneLabel="UTC+8"
       />
 
-      {/* DOCK NAVIGATION - Fixed at bottom */}
-      <nav className="dock-nav">
-        <div className="dock-navigation">
-          <a href="#home" className="dock-item group">
-            <span className="icon">🏠</span>
-            <span className="label">Home</span>
-          </a>
-          <a href="#about" className="dock-item group">
-            <span className="icon">ℹ️</span>
-            <span className="label">About</span>
-          </a>
-          <a href="#work" className="dock-item group">
-            <span className="icon">📂</span>
-            <span className="label">Projects</span>
-          </a>
-          <a href="#contact" className="dock-item group">
-            <span className="icon">✉️</span>
-            <span className="label">Contact</span>
-          </a>
-        </div>
-      </nav>
+      {/* DOCK NAVIGATION - Icon-only floating dock */}
+      <NavigationDock />
 
       {/* HERO SECTION - Massive Typography */}
       <section id="home" className="min-h-screen flex flex-col justify-center px-6">
         <div className="max-w-7xl mx-auto w-full">
-          <p className="text-xs font-mono text-[#666] tracking-widest mb-6">
+          <p className="text-xs font-mono text-[var(--muted)] tracking-widest mb-6">
             (01) — INTRODUCTION
           </p>
           
@@ -58,7 +40,7 @@ export default function Home() {
               deletingSpeed={40}
               pauseDuration={2000}
               loop={true}
-              className="text-xl md:text-2xl font-mono text-[#666] tracking-widest"
+              className="text-xl md:text-2xl font-mono text-[var(--muted)] tracking-widest"
             />
           </div>
 
@@ -67,29 +49,29 @@ export default function Home() {
           </h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <div>
-              <p className="text-lg text-[#666] leading-relaxed max-w-md">
+              <p className="text-lg text-[var(--muted)] leading-relaxed max-w-md">
                 System administrator and web developer crafting robust digital systems with clean, efficient code. Based in the Philippines.
               </p>
             </div>
             <div className="flex flex-col gap-4">
               <div className="flex items-center gap-4">
-                <span className="text-xs font-mono text-[#666]">[ROLE]</span>
+                <span className="text-xs font-mono text-[var(--muted)]">[ROLE]</span>
                 <span className="text-sm font-medium">System Admin / Web Developer</span>
               </div>
               <div className="flex items-center gap-4">
-                <span className="text-xs font-mono text-[#666]">[LOCATION]</span>
+                <span className="text-xs font-mono text-[var(--muted)]">[LOCATION]</span>
                 <span className="text-sm font-medium">Philippines</span>
               </div>
               <div className="flex items-center gap-4">
-                <span className="text-xs font-mono text-[#666]">[STATUS]</span>
+                <span className="text-xs font-mono text-[var(--muted)]">[STATUS]</span>
                 <span className="text-sm font-medium">Available for Work</span>
               </div>
             </div>
           </div>
 
           {/* Tech Stack */}
-          <div className="mt-16 pt-8 border-t border-[#111111]">
-            <p className="text-xs font-mono text-[#666] mb-4">TECH STACK</p>
+          <div className="mt-16 pt-8 border-t border-[var(--border)]/20">
+            <p className="text-xs font-mono text-[var(--muted)] mb-4">TECH STACK</p>
             <div className="flex flex-wrap gap-3">
               {["Next.js", "React", "TypeScript", "Tailwind", "VB.NET", "Docker", "Linux", "MySQL"].map((tech) => (
                 <span key={tech} className="tech-tag">{tech}</span>
@@ -109,13 +91,13 @@ export default function Home() {
       <Contact />
 
       {/* FOOTER */}
-      <footer className="border-t border-[#111111] py-12 px-6">
+      <footer className="border-t border-[var(--border)]/20 py-12 px-6">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-xs font-mono text-[#666]">© 2025 NINO DUQUE. ALL RIGHTS RESERVED.</p>
+          <p className="text-xs font-mono text-[var(--muted)]">© 2025 NINO DUQUE. ALL RIGHTS RESERVED.</p>
           <div className="flex items-center gap-8">
-            <a href="#" className="text-xs font-mono text-[#666] hover:text-[#111] transition-colors">LINKEDIN</a>
-            <a href="#" className="text-xs font-mono text-[#666] hover:text-[#111] transition-colors">GITHUB</a>
-            <a href="#" className="text-xs font-mono text-[#666] hover:text-[#111] transition-colors">EMAIL</a>
+            <a href="#" className="text-xs font-mono text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">LINKEDIN</a>
+            <a href="#" className="text-xs font-mono text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">GITHUB</a>
+            <a href="#" className="text-xs font-mono text-[var(--muted)] hover:text-[var(--foreground)] transition-colors">EMAIL</a>
           </div>
         </div>
       </footer>
