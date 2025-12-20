@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import CursorSpotlight from "./components/CursorSpotlight";
-import { ThemeProvider } from "./components/ThemeProvider";
+import CursorSpotlight from "@/components/layout/CursorSpotlight";
+import { ThemeProvider } from "@/components/layout/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -49,6 +49,29 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* Infinite Marquee Animation */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Dark mode logo filter */
+.dark {
+  --logo-filter: invert(1);
+}
+
 /* Full viewport sections */
 .section-full {
   min-height: 100vh;
