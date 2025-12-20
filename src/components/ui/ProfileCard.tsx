@@ -5,14 +5,14 @@ import Image from "next/image";
 
 interface ProfileCardProps {
   name?: string;
-  role?: string;
+  systemId?: string;
   imageSrc?: string;
   imageAlt?: string;
 }
 
 export default function ProfileCard({
-  name = "Niño Duque",
-  role = "Creative Developer",
+  name = "NIÑO DUQUE",
+  systemId = "SYS_ID // 2025",
   imageSrc = "/profile.jpg",
   imageAlt = "Profile photo",
 }: ProfileCardProps) {
@@ -24,9 +24,9 @@ export default function ProfileCard({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Card container with tilt effect */}
+      {/* Card container with tilt effect - larger size */}
       <div
-        className="relative w-64 h-80 transition-all duration-500 ease-out"
+        className="relative w-80 h-[420px] transition-all duration-500 ease-out"
         style={{
           transform: isHovered
             ? "perspective(1000px) rotateY(0deg) rotateX(0deg) scale(1.05)"
@@ -35,34 +35,34 @@ export default function ProfileCard({
       >
         {/* Card background with border */}
         <div className="absolute inset-0 bg-[var(--background)] border-2 border-[var(--foreground)] rounded-lg overflow-hidden shadow-[8px_8px_0px_0px_var(--foreground)] transition-shadow duration-500 group-hover:shadow-[4px_4px_0px_0px_var(--foreground)]">
-          {/* Image container */}
-          <div className="relative w-full h-48 bg-[var(--foreground)]/5 overflow-hidden">
+          {/* Image container - taller for face visibility */}
+          <div className="relative w-full h-72 bg-[var(--foreground)]/5 overflow-hidden">
             <Image
               src={imageSrc}
               alt={imageAlt}
               fill
-              className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+              className="object-cover object-top grayscale group-hover:grayscale-0 transition-all duration-500"
               priority
             />
-            
+
             {/* Overlay gradient */}
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--background)] to-transparent opacity-30" />
           </div>
 
-          {/* Content */}
+          {/* Content - System Identity style */}
           <div className="p-4">
             <p className="text-xs font-mono text-[var(--muted)] tracking-widest mb-1">
-              [{role.toUpperCase()}]
+              {systemId}
             </p>
             <h3 className="text-xl font-black tracking-tight text-[var(--foreground)]">
-              {name.toUpperCase()}
+              {name}
             </h3>
-            
+
             {/* Status indicator */}
             <div className="flex items-center gap-2 mt-3">
               <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
               <span className="text-xs font-mono text-[var(--muted)]">
-                Available for work
+                SYSTEM ONLINE
               </span>
             </div>
           </div>

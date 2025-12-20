@@ -1,4 +1,22 @@
+"use client";
+
+import { useState } from "react";
+
 export default function Contact() {
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedPhone, setCopiedPhone] = useState(false);
+
+  const copyToClipboard = (text: string, type: "email" | "phone") => {
+    navigator.clipboard.writeText(text);
+    if (type === "email") {
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2000);
+    } else {
+      setCopiedPhone(true);
+      setTimeout(() => setCopiedPhone(false), 2000);
+    }
+  };
+
   return (
     <section id="contact" className="min-h-screen py-24 px-6 border-t border-[var(--border)]/20">
       <div className="max-w-7xl mx-auto">
@@ -21,14 +39,24 @@ export default function Contact() {
             </p>
             
             <div className="space-y-4 mb-12">
-              <div className="flex items-center gap-4">
+              <button
+                onClick={() => copyToClipboard("oninpoh@gmail.com", "email")}
+                className="flex items-center gap-4 group cursor-pointer hover:opacity-70 transition-opacity"
+              >
                 <span className="text-xs font-mono text-[var(--muted)]">[EMAIL]</span>
-                <span className="text-sm font-medium">oninpoh@gmail.com</span>
-              </div>
-              <div className="flex items-center gap-4">
+                <span className="text-sm font-medium">
+                  {copiedEmail ? "✓ COPIED!" : "oninpoh@gmail.com"}
+                </span>
+              </button>
+              <button
+                onClick={() => copyToClipboard("+63 905 8840 820", "phone")}
+                className="flex items-center gap-4 group cursor-pointer hover:opacity-70 transition-opacity"
+              >
                 <span className="text-xs font-mono text-[var(--muted)]">[PHONE]</span>
-                <span className="text-sm font-medium">+63 905 8840 820</span>
-              </div>
+                <span className="text-sm font-medium">
+                  {copiedPhone ? "✓ COPIED!" : "+63 905 8840 820"}
+                </span>
+              </button>
             </div>
 
             {/* Social Links */}

@@ -19,7 +19,7 @@ export default function TechStackMarquee() {
   const items = [...techStack, ...techStack];
 
   return (
-    <div className="w-full overflow-hidden py-8 border-t border-[var(--border)]/20">
+    <div className="w-full overflow-hidden py-8">
       <p className="text-xs font-mono text-[var(--muted)] mb-6 px-6 max-w-7xl mx-auto tracking-widest">
         TECH STACK
       </p>
@@ -34,7 +34,7 @@ export default function TechStackMarquee() {
           {items.map((tech, index) => (
             <div
               key={`${tech.name}-${index}`}
-              className="flex items-center gap-3 px-8 py-4 mx-2 bg-[var(--foreground)]/5 dark:bg-[var(--foreground)]/10 rounded-full shrink-0 hover:bg-[var(--foreground)]/10 dark:hover:bg-[var(--foreground)]/20 transition-colors"
+              className="flex items-center gap-3 px-8 py-4 mx-2 shrink-0 hover:opacity-70 transition-opacity"
             >
               <div className="relative w-6 h-6 shrink-0">
                 <Image
