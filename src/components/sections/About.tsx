@@ -43,33 +43,37 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="min-h-screen py-24 px-6 border-t border-[var(--border)]/20">
+    <section id="about" className="py-24 px-6 border-t border-[var(--border)]/20 bg-[#F3F3F3] dark:bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-16">
-          <p className="text-xs font-mono text-[var(--muted)] tracking-widest mb-4">(02) — ABOUT</p>
-          <h2 className="text-6xl md:text-8xl font-black tracking-tighter">
+          <p className="text-xs font-mono text-[var(--muted)] tracking-widest mb-4">(01) — ABOUT</p>
+          <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-[#111111] dark:text-[#F3F3F3]">
             ABOUT
           </h2>
         </div>
 
-        {/* Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
-          {/* Left side - About text */}
+        {/* Content Grid - Top Row: Bio + Skills */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
+          {/* Left: About Me Bio */}
           <div>
-            <p className="text-lg text-[var(--muted)] leading-relaxed mb-8">
+            <p className="text-xs font-mono text-[var(--muted)] tracking-widest mb-6">BIO</p>
+            <p className="text-lg text-[#111111] dark:text-[#F3F3F3]/80 leading-relaxed mb-6">
               I am a multi-disciplinary developer focusing on robust system
               administration and clean code. My journey started with a passion for
               technology and has evolved into expertise across web development,
               server management, and cybersecurity.
             </p>
-            <p className="text-lg text-[var(--muted)] leading-relaxed mb-12">
+            <p className="text-lg text-[#111111] dark:text-[#F3F3F3]/80 leading-relaxed">
               When not online, I am active in the local sports community organizing
               tennis events and running marathons. I believe in continuous learning
               and staying updated with the latest technologies.
             </p>
+          </div>
 
-            {/* Skills - Plain list */}
+          {/* Right: Skills/Tech Stack */}
+          <div>
+            <p className="text-xs font-mono text-[var(--muted)] tracking-widest mb-6">TECH STACK</p>
             <div className="space-y-6">
               <div>
                 <p className="text-xs font-mono text-[var(--muted)] mb-3">FRONTEND</p>
@@ -97,28 +101,28 @@ export default function About() {
               </div>
             </div>
           </div>
+        </div>
 
-          {/* Right side - Experience */}
-          <div>
-            <p className="text-xs font-mono text-[var(--muted)] tracking-widest mb-8">EXPERIENCE</p>
-            <div className="space-y-0">
-              {experiences.map((exp) => (
-                <div
-                  key={exp.id}
-                  className="py-8 border-b border-[var(--border)]/20 group"
-                >
-                  <div className="flex justify-between items-start mb-4">
-                    <span className="text-xs font-mono text-[var(--muted)] group-hover:translate-x-1 transition-transform">({exp.id})</span>
-                    <span className="text-xs font-mono text-[var(--muted)]">{exp.period}</span>
-                  </div>
-                  <h3 className="text-2xl font-black mb-2 tracking-tight">{exp.role.toUpperCase()}</h3>
-                  <p className="text-sm font-mono text-[var(--muted)] mb-4">{exp.company}</p>
-                  <p className="text-sm text-[var(--muted)] leading-relaxed">
-                    {exp.description}
-                  </p>
+        {/* Bottom Row: Experience - Full Width */}
+        <div>
+          <p className="text-xs font-mono text-[var(--muted)] tracking-widest mb-8">EXPERIENCE</p>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {experiences.map((exp) => (
+              <div
+                key={exp.id}
+                className="p-6 border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] group hover:border-[#111111] dark:hover:border-white/30 transition-colors"
+              >
+                <div className="flex justify-between items-start mb-4">
+                  <span className="text-xs font-mono text-[var(--muted)]">({exp.id})</span>
+                  <span className="text-xs font-mono text-[var(--muted)]">{exp.period}</span>
                 </div>
-              ))}
-            </div>
+                <h3 className="text-lg font-black mb-1 tracking-tight text-[#111111] dark:text-[#F3F3F3]">{exp.role.toUpperCase()}</h3>
+                <p className="text-sm font-mono text-[var(--muted)] mb-3">{exp.company}</p>
+                <p className="text-sm text-[var(--muted)] leading-relaxed line-clamp-3">
+                  {exp.description}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

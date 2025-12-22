@@ -1,6 +1,6 @@
 "use client";
 
-import { Clock, Calendar, ArrowRight } from "lucide-react";
+import { Clock, ArrowUpRight } from "lucide-react";
 
 interface BlogPost {
   id: string;
@@ -18,132 +18,121 @@ export default function Blogs() {
       id: "01",
       title: "Self-hosting n8n on my \"Home Server\"",
       excerpt: "Since AI automation is the trend these days, I started exploring different tools — but wow, they're expensive! So I decided to self-host n8n on my home server...",
-      date: "October 17, 2025",
-      readTime: "3 mins read",
-      tags: ["ai", "linux", "automation", "n8n"],
+      date: "Oct 2025",
+      readTime: "3 min",
+      tags: ["ai", "linux", "automation"],
       link: "#",
     },
     {
       id: "02",
       title: "How I Built My Own Blogging Site with Sanity and Next",
       excerpt: "I've been posting on dev.to for a while, but my \"toxic dev trait\" kicked in and I thought: I can build my own blogging platform...",
-      date: "August 28, 2025",
-      readTime: "4 mins read",
-      tags: ["cms", "nextjs", "learning", "web development", "sanity"],
+      date: "Aug 2025",
+      readTime: "4 min",
+      tags: ["cms", "nextjs", "sanity"],
       link: "#",
     },
     {
       id: "03",
-      title: "Why Web Development Is Still One of the Best Skills You Can Learn Today",
+      title: "Why Web Development Is Still One of the Best Skills",
       excerpt: "Still choosing your major? Web development offers flexibility, freedom, and a future-proof career path that's worth considering...",
-      date: "June 23, 2025",
-      readTime: "8 mins read",
-      tags: ["web development", "programming", "learning", "developers"],
+      date: "Jun 2025",
+      readTime: "8 min",
+      tags: ["career", "web dev"],
       link: "#",
     },
     {
       id: "04",
-      title: "How I Automated OBS Streaming with JavaScript (And Saved Our Office Hours of Setup Time)",
+      title: "Automating OBS Streaming with JavaScript",
       excerpt: "At our workplace, we operate multiple mini PCs in a remote location — each with 2 monitors for OBS streaming. Setting them up manually was a nightmare...",
-      date: "May 4, 2025",
-      readTime: "3 mins read",
-      tags: ["javascript", "python", "automation", "productivity", "websockets"],
+      date: "May 2025",
+      readTime: "3 min",
+      tags: ["javascript", "automation"],
       link: "#",
     },
     {
       id: "05",
-      title: "Exploring HuggingFace and Building an AI Exam Question Generator",
-      excerpt: "You've probably heard of HuggingFace—a powerful platform for AI enthusiasts and developers. I built an exam question generator using their models...",
-      date: "December 24, 2024",
-      readTime: "3 mins read",
-      tags: ["web", "ai", "huggingface", "python"],
+      title: "Building an AI Exam Question Generator",
+      excerpt: "You've probably heard of HuggingFace—a powerful platform for AI enthusiasts. I built an exam question generator using their models...",
+      date: "Dec 2024",
+      readTime: "3 min",
+      tags: ["ai", "huggingface"],
       link: "#",
     },
     {
       id: "06",
-      title: "Essential Web Resources for Stunning Front-End Design",
-      excerpt: "Creating an eye-catching front end for a website often means diving into a variety of resources. Here are some essential tools and libraries...",
-      date: "November 11, 2024",
-      readTime: "2 mins read",
-      tags: ["web development", "react", "web components", "web resources", "programming"],
+      title: "Essential Web Resources for Front-End Design",
+      excerpt: "Creating an eye-catching front end for a website often means diving into a variety of resources. Here are some essential tools...",
+      date: "Nov 2024",
+      readTime: "2 min",
+      tags: ["resources", "frontend"],
       link: "#",
     },
   ];
 
   return (
-    <section id="blogs" className="min-h-screen py-24 px-6 border-t border-[var(--border)]/20">
+    <section id="blogs" className="py-24 px-6 border-t border-[var(--border)]/20 bg-[#F3F3F3] dark:bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="mb-16 flex items-start justify-between">
+        <div className="mb-16 flex items-end justify-between">
           <div>
             <p className="text-xs font-mono text-[var(--muted)] tracking-widest mb-4">(03) — WRITING</p>
-            <h2 className="text-4xl md:text-6xl font-black tracking-tighter">
-              PUBLISHED BLOGS
+            <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-[#111111] dark:text-[#F3F3F3]">
+              BLOGS &<br />ARTICLES
             </h2>
           </div>
-          <span className="text-xs font-mono text-[var(--muted)] tracking-widest">
-            FEATURED ARTICLES
-          </span>
+          <a href="#" className="hidden md:flex items-center gap-2 text-sm font-mono hover:underline underline-offset-4 text-[#111111] dark:text-[#F3F3F3]">
+            View All <ArrowUpRight size={14} />
+          </a>
         </div>
 
-        {/* Blog List */}
-        <div className="space-y-0">
+        {/* 3-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {blogPosts.map((post) => (
             <a
               key={post.id}
               href={post.link}
-              className="group block py-8 border-b border-[var(--border)]/20 hover:bg-[var(--foreground)]/5 transition-colors -mx-4 px-4"
+              className="group block bg-white dark:bg-[#111111] border border-[#111111] dark:border-white/20 p-5 transition-all duration-300 hover:shadow-[4px_4px_0px_0px_#111111] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)]"
             >
-              <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-8">
-                {/* Post Number */}
-                <span className="text-xs font-mono text-[var(--muted)] shrink-0">
-                  {post.id}
+              {/* Meta Row */}
+              <div className="flex items-center justify-between mb-3 text-xs font-mono text-[var(--muted)]">
+                <span className="flex items-center gap-1">
+                  <Clock size={12} />
+                  {post.readTime}
                 </span>
+                <span>{post.date}</span>
+              </div>
 
-                {/* Main Content */}
-                <div className="flex-grow">
-                  {/* Title */}
-                  <h3 className="text-xl md:text-2xl font-black tracking-tight mb-2 group-hover:underline">
-                    {post.title}
-                  </h3>
+              {/* Title */}
+              <h3 className="text-lg font-bold tracking-tight mb-2 group-hover:underline underline-offset-2 line-clamp-2">
+                {post.title}
+              </h3>
 
-                  {/* Meta */}
-                  <div className="flex items-center gap-4 mb-3 text-xs font-mono text-[var(--muted)]">
-                    <span className="flex items-center gap-1">
-                      <Clock size={12} />
-                      {post.readTime}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Calendar size={12} />
-                      {post.date}
-                    </span>
-                  </div>
+              {/* Excerpt */}
+              <p className="text-sm text-[var(--muted)] leading-relaxed mb-4 line-clamp-2">
+                {post.excerpt}
+              </p>
 
-                  {/* Excerpt */}
-                  <p className="text-sm text-[var(--muted)] leading-relaxed mb-4 max-w-2xl">
-                    {post.excerpt}
-                  </p>
-
-                  {/* Tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="text-xs px-2 py-1 bg-[var(--foreground)]/5 text-[var(--muted)] font-mono"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Read More */}
-                <div className="flex items-center gap-1 text-sm font-mono shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
-                  Read more <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
-                </div>
+              {/* Tags */}
+              <div className="flex flex-wrap gap-1.5">
+                {post.tags.slice(0, 3).map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-[10px] px-2 py-0.5 bg-[#f0f0f0] dark:bg-white/10 text-[var(--muted)] font-mono rounded"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
             </a>
           ))}
+        </div>
+
+        {/* Mobile View All Link */}
+        <div className="mt-8 md:hidden text-center">
+          <a href="#" className="inline-flex items-center gap-2 text-sm font-mono hover:underline underline-offset-4">
+            View All Articles <ArrowUpRight size={14} />
+          </a>
         </div>
       </div>
     </section>
