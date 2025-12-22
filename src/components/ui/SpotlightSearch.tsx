@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
-import { Search, Home, User, FolderOpen, Mail, Copy, Github, Linkedin, Facebook, X } from "lucide-react";
+import { Search, Home, User, FolderOpen, Mail, Copy, Github, Linkedin, Facebook, FileText } from "lucide-react";
 
 interface SearchItem {
   id: string;
@@ -48,6 +48,7 @@ export default function SpotlightSearch({ isOpen, onClose }: SpotlightSearchProp
     { id: "home", label: "Home", icon: <Home size={18} />, action: () => navigateTo("#home"), category: "navigation" },
     { id: "about", label: "About", icon: <User size={18} />, action: () => navigateTo("#about"), category: "navigation" },
     { id: "projects", label: "Projects", icon: <FolderOpen size={18} />, action: () => navigateTo("#work"), category: "navigation" },
+    { id: "blogs", label: "Blogs", icon: <FileText size={18} />, action: () => navigateTo("#blogs"), category: "navigation" },
     { id: "contact", label: "Contact", icon: <Mail size={18} />, action: () => navigateTo("#contact"), category: "navigation" },
     { id: "copy-email", label: copiedEmail ? "Copied!" : "Copy Email", icon: <Copy size={18} />, action: copyEmail, category: "actions" },
     { id: "github", label: "GitHub", icon: <Github size={18} />, action: () => openLink("https://github.com/Nenjii"), category: "social" },

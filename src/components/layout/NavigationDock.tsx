@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Home, User, FolderOpen, Mail, Sun, Moon, Command } from "lucide-react";
+import { Home, User, FolderOpen, Mail, Sun, Moon, Command, FileText } from "lucide-react";
 import { useTheme } from "@/components/layout/ThemeProvider";
 import SpotlightSearch from "@/components/ui/SpotlightSearch";
 
@@ -41,6 +41,7 @@ export default function NavigationDock() {
     { href: "#home", icon: <Home size={24} />, label: "Home" },
     { href: "#about", icon: <User size={24} />, label: "About" },
     { href: "#work", icon: <FolderOpen size={24} />, label: "Projects" },
+    { href: "#blogs", icon: <FileText size={24} />, label: "Blogs" },
     { href: "#contact", icon: <Mail size={24} />, label: "Contact" },
   ];
 

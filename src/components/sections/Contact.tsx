@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { Download } from "lucide-react";
 
 export default function Contact() {
   const [copiedEmail, setCopiedEmail] = useState(false);
@@ -60,11 +61,21 @@ export default function Contact() {
             </div>
 
             {/* Social Links */}
-            <div className="flex items-center gap-6">
-              <a href="www.linkedin.com/in/niño-filipen-duque-187421206" className="text-xs font-mono text-[var(--muted)] border border-[var(--border)] px-4 py-2 hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all">LINKEDIN</a>
-              <a href="https://github.com/Nenjii" className="text-xs font-mono text-[var(--muted)] border border-[var(--border)] px-4 py-2 hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all">GITHUB</a>
-              <a href="https://www.facebook.com/mynenjiii" className="text-xs font-mono text-[var(--muted)] border border-[var(--border)] px-4 py-2 hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all">TWITTER</a>
+            <div className="flex flex-wrap items-center gap-4 mb-8">
+              <a href="https://www.linkedin.com/in/niño-filipen-duque-187421206" target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-[var(--muted)] border border-[var(--border)] px-4 py-2 hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all">LINKEDIN</a>
+              <a href="https://github.com/Nenjii" target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-[var(--muted)] border border-[var(--border)] px-4 py-2 hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all">GITHUB</a>
+              <a href="https://www.facebook.com/mynenjiii" target="_blank" rel="noopener noreferrer" className="text-xs font-mono text-[var(--muted)] border border-[var(--border)] px-4 py-2 hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all">FACEBOOK</a>
             </div>
+
+            {/* Download Resume Button */}
+            <a
+              href="/resume.pdf"
+              download
+              className="inline-flex items-center gap-2 px-6 py-3 border border-[var(--foreground)] text-[var(--foreground)] font-black text-sm tracking-widest hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all"
+            >
+              <Download size={16} />
+              DOWNLOAD RESUME
+            </a>
           </div>
 
           {/* Right side - Contact form */}
