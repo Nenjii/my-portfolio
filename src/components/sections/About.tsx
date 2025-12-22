@@ -1,3 +1,5 @@
+"use client";
+
 export default function About() {
   const experiences = [
     {
@@ -42,8 +44,57 @@ export default function About() {
     }
   ];
 
+  // Smart grid: calculate span for last row items to fill the full width
+  const getGridSpan = (index: number, total: number) => {
+    const remainder = total % 3;
+    const isLastRow = index >= total - remainder;
+    
+    if (remainder === 0 || !isLastRow) {
+      return ""; // Normal single column
+    }
+    
+    // Last row with odd items
+    if (remainder === 1) {
+      // 1 item in last row - span all 3 columns
+      return "md:col-span-2 lg:col-span-3";
+    } else if (remainder === 2) {
+      // 2 items in last row - each spans 1.5 columns (so we use col-span-3/2 approach)
+      // On lg: first item spans 2 cols, second spans 1 (or both span 1.5 via custom)
+      // Simpler: both span 3 cols on lg grid of 6
+      return "lg:col-span-1"; // Keep as is, but we'll use a 6-col grid for better math
+    }
+    
+    return "";
+  };
+
+  // Better approach: use CSS grid with auto-fill
+  const getSmartGridClass = (index: number, total: number) => {
+    const remainder = total % 3;
+    const positionInLastRow = index - (total - remainder);
+    
+    if (remainder === 0) return "";
+    if (index < total - remainder) return "";
+    
+    // Last row handling
+    if (remainder === 1) {
+      return "md:col-span-2 lg:col-span-3"; // Single item spans full width
+    }
+    if (remainder === 2) {
+      // Two items: on lg, we want them to split the 3 columns
+      // First gets 2 cols, second gets 1 col OR we do 1.5 each
+      // Using a hack: first item col-span-2, second col-span-1 on lg (uneven but fills)
+      // Better: both get roughly half - but CSS grid doesn't do .5
+      // Solution: Use col-span-2 for first, col-span-1 for second at lg breakpoint
+      // This creates 2/3 + 1/3 split, not ideal
+      // Alternative: on last row with 2 items, make each col-span-1 but center them
+      // Best UX: Make the grid container use a different layout for the last row
+      return ""; // We'll handle this differently
+    }
+    return "";
+  };
+
   return (
-    <section id="about" className="py-24 px-6 border-t border-[#111111]/10 dark:border-white/10 bg-[#F3F3F3] dark:bg-[#0A0A0A]">
+    <section id="about" className="py-24 px-6 border-t border-[#111111]/10 dark:border-white/10 bg-[#F3F3F3] dark:bg-[#0A0A0A] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-16">
@@ -103,26 +154,49 @@ export default function About() {
           </div>
         </div>
 
-        {/* Bottom Row: Experience - Full Width */}
+        {/* Bottom Row: Experience - Smart 3-Column Grid */}
         <div>
           <p className="text-xs font-mono text-[#666666] dark:text-[#999999] tracking-widest mb-8">EXPERIENCE</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {experiences.map((exp) => (
-              <div
-                key={exp.id}
-                className="p-6 border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] group hover:border-[#111111] dark:hover:border-white/30 transition-colors"
-              >
-                <div className="flex justify-between items-start mb-4">
-                  <span className="text-xs font-mono text-[#666666] dark:text-[#999999]">({exp.id})</span>
-                  <span className="text-xs font-mono text-[#666666] dark:text-[#999999]">{exp.period}</span>
+            {experiences.map((exp, index) => {
+              const total = experiences.length;
+              const remainder = total % 3;
+              const isLastRow = index >= total - remainder && remainder !== 0;
+              
+              // Calculate span for last row items
+              let spanClass = "";
+              if (isLastRow) {
+                if (remainder === 1) {
+                  // 1 item: span all 3 columns
+                  spanClass = "md:col-span-2 lg:col-span-3";
+                } else if (remainder === 2) {
+                  // 2 items: on lg, each takes 1.5 cols (impossible), so first takes 2, second takes 1
+                  // Or we can make them both span 1 and center - but that leaves gaps
+                  // Best: first spans 2 cols on lg only
+                  const posInLastRow = index - (total - remainder);
+                  if (posInLastRow === 0) {
+                    spanClass = "lg:col-span-2";
+                  }
+                }
+              }
+              
+              return (
+                <div
+                  key={exp.id}
+                  className={`p-6 border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] group hover:border-[#111111] dark:hover:border-white/30 transition-colors ${spanClass}`}
+                >
+                  <div className="flex justify-between items-start mb-4">
+                    <span className="text-xs font-mono text-[#666666] dark:text-[#999999]">({exp.id})</span>
+                    <span className="text-xs font-mono text-[#666666] dark:text-[#999999]">{exp.period}</span>
+                  </div>
+                  <h3 className="text-lg font-black mb-1 tracking-tight text-[#111111] dark:text-[#F3F3F3]">{exp.role.toUpperCase()}</h3>
+                  <p className="text-sm font-mono text-[#666666] dark:text-[#999999] mb-3">{exp.company}</p>
+                  <p className="text-sm text-[#666666] dark:text-[#999999] leading-relaxed">
+                    {exp.description}
+                  </p>
                 </div>
-                <h3 className="text-lg font-black mb-1 tracking-tight text-[#111111] dark:text-[#F3F3F3]">{exp.role.toUpperCase()}</h3>
-                <p className="text-sm font-mono text-[#666666] dark:text-[#999999] mb-3">{exp.company}</p>
-                <p className="text-sm text-[#666666] dark:text-[#999999] leading-relaxed line-clamp-3">
-                  {exp.description}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>

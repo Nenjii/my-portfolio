@@ -38,15 +38,21 @@ html {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  color: #111111;
+  background: #F3F3F3;
   font-family: var(--font-geist-sans), system-ui, sans-serif;
   /* Swiss Grid Background */
   background-image:
     linear-gradient(var(--grid-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
   background-size: 20px 20px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: background-color 0.3s ease, color 0.3s ease, background-image 0.3s ease;
+}
+
+.dark body,
+html.dark body {
+  color: #F3F3F3;
+  background: #0A0A0A;
 }
 
 /* Infinite Marquee Animation */

@@ -123,7 +123,7 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="py-24 px-6 border-t border-[#111111]/10 dark:border-white/10 bg-[#F3F3F3] dark:bg-[#0A0A0A]">
+    <section id="contact" className="py-24 px-6 border-t border-[#111111]/10 dark:border-white/10 bg-[#F3F3F3] dark:bg-[#0A0A0A] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         {/* Content Grid - Form on right aligned with header */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">

@@ -71,7 +71,7 @@ export default function Blogs() {
   ];
 
   return (
-    <section id="blogs" className="py-24 px-6 border-t border-[#111111]/10 dark:border-white/10 bg-[#F3F3F3] dark:bg-[#0A0A0A]">
+    <section id="blogs" className="py-24 px-6 border-t border-[#111111]/10 dark:border-white/10 bg-[#F3F3F3] dark:bg-[#0A0A0A] transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-16 flex items-end justify-between">
@@ -86,46 +86,67 @@ export default function Blogs() {
           </a>
         </div>
 
-        {/* 3-Column Grid */}
+        {/* Smart 3-Column Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {blogPosts.map((post) => (
-            <a
-              key={post.id}
-              href={post.link}
-              className="group block bg-white dark:bg-[#111111] border border-[#111111] dark:border-white/20 p-5 transition-all duration-300 hover:shadow-[4px_4px_0px_0px_#111111] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)]"
-            >
-              {/* Meta Row */}
-              <div className="flex items-center justify-between mb-3 text-xs font-mono text-[#666666] dark:text-[#999999]">
-                <span className="flex items-center gap-1">
-                  <Clock size={12} />
-                  {post.readTime}
-                </span>
-                <span>{post.date}</span>
-              </div>
-
-              {/* Title */}
-              <h3 className="text-lg font-bold tracking-tight mb-2 group-hover:underline underline-offset-2 line-clamp-2 text-[#111111] dark:text-[#F3F3F3]">
-                {post.title}
-              </h3>
-
-              {/* Excerpt */}
-              <p className="text-sm text-[#666666] dark:text-[#999999] leading-relaxed mb-4 line-clamp-2">
-                {post.excerpt}
-              </p>
-
-              {/* Tags */}
-              <div className="flex flex-wrap gap-1.5">
-                {post.tags.slice(0, 3).map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-[10px] px-2 py-0.5 bg-[#f0f0f0] dark:bg-white/10 text-[#666666] dark:text-[#999999] font-mono rounded"
-                  >
-                    {tag}
+          {blogPosts.map((post, index) => {
+            const total = blogPosts.length;
+            const remainder = total % 3;
+            const isLastRow = index >= total - remainder && remainder !== 0;
+            
+            // Calculate span for last row items
+            let spanClass = "";
+            if (isLastRow) {
+              if (remainder === 1) {
+                // 1 item: span all 3 columns
+                spanClass = "md:col-span-2 lg:col-span-3";
+              } else if (remainder === 2) {
+                // 2 items: first spans 2 cols on lg, second spans 1
+                const posInLastRow = index - (total - remainder);
+                if (posInLastRow === 0) {
+                  spanClass = "lg:col-span-2";
+                }
+              }
+            }
+            
+            return (
+              <a
+                key={post.id}
+                href={post.link}
+                className={`group block bg-white dark:bg-[#111111] border border-[#111111]/10 dark:border-white/10 p-5 transition-all duration-300 hover:border-[#111111] dark:hover:border-white/30 hover:shadow-[4px_4px_0px_0px_#111111] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] ${spanClass}`}
+              >
+                {/* Meta Row */}
+                <div className="flex items-center justify-between mb-3 text-xs font-mono text-[#666666] dark:text-[#999999]">
+                  <span className="flex items-center gap-1">
+                    <Clock size={12} />
+                    {post.readTime}
                   </span>
-                ))}
-              </div>
-            </a>
-          ))}
+                  <span>{post.date}</span>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-lg font-bold tracking-tight mb-2 group-hover:underline underline-offset-2 line-clamp-2 text-[#111111] dark:text-[#F3F3F3]">
+                  {post.title}
+                </h3>
+
+                {/* Excerpt */}
+                <p className="text-sm text-[#666666] dark:text-[#999999] leading-relaxed mb-4 line-clamp-2">
+                  {post.excerpt}
+                </p>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-1.5">
+                  {post.tags.slice(0, 3).map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-[10px] px-2 py-0.5 bg-[#f0f0f0] dark:bg-white/10 text-[#666666] dark:text-[#999999] font-mono rounded"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </a>
+            );
+          })}
         </div>
 
         {/* Mobile View All Link */}
