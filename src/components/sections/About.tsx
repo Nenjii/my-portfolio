@@ -43,11 +43,11 @@ export default function About() {
   ];
 
   return (
-    <section id="about" className="py-24 px-6 border-t border-[var(--border)]/20 bg-[#F3F3F3] dark:bg-[#0A0A0A]">
+    <section id="about" className="py-24 px-6 border-t border-[#111111]/10 dark:border-white/10 bg-[#F3F3F3] dark:bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-16">
-          <p className="text-xs font-mono text-[var(--muted)] tracking-widest mb-4">(01) — ABOUT</p>
+          <p className="text-xs font-mono text-[#666666] dark:text-[#999999] tracking-widest mb-4">(01) — ABOUT</p>
           <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-[#111111] dark:text-[#F3F3F3]">
             ABOUT
           </h2>
@@ -57,7 +57,7 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           {/* Left: About Me Bio */}
           <div>
-            <p className="text-xs font-mono text-[var(--muted)] tracking-widest mb-6">BIO</p>
+            <p className="text-xs font-mono text-[#666666] dark:text-[#999999] tracking-widest mb-6">BIO</p>
             <p className="text-lg text-[#111111] dark:text-[#F3F3F3]/80 leading-relaxed mb-6">
               I am a multi-disciplinary developer focusing on robust system
               administration and clean code. My journey started with a passion for
@@ -73,10 +73,10 @@ export default function About() {
 
           {/* Right: Skills/Tech Stack */}
           <div>
-            <p className="text-xs font-mono text-[var(--muted)] tracking-widest mb-6">TECH STACK</p>
+            <p className="text-xs font-mono text-[#666666] dark:text-[#999999] tracking-widest mb-6">TECH STACK</p>
             <div className="space-y-6">
               <div>
-                <p className="text-xs font-mono text-[var(--muted)] mb-3">FRONTEND</p>
+                <p className="text-xs font-mono text-[#666666] dark:text-[#999999] mb-3">FRONTEND</p>
                 <div className="flex flex-wrap gap-2">
                   {["React", "Next.js", "TypeScript", "Tailwind CSS"].map((skill) => (
                     <span key={skill} className="tech-tag">{skill}</span>
@@ -84,7 +84,7 @@ export default function About() {
                 </div>
               </div>
               <div>
-                <p className="text-xs font-mono text-[var(--muted)] mb-3">BACKEND</p>
+                <p className="text-xs font-mono text-[#666666] dark:text-[#999999] mb-3">BACKEND</p>
                 <div className="flex flex-wrap gap-2">
                   {["VB.NET", "Node.js", "MySQL", "PHP"].map((skill) => (
                     <span key={skill} className="tech-tag">{skill}</span>
@@ -92,7 +92,7 @@ export default function About() {
                 </div>
               </div>
               <div>
-                <p className="text-xs font-mono text-[var(--muted)] mb-3">INFRASTRUCTURE</p>
+                <p className="text-xs font-mono text-[#666666] dark:text-[#999999] mb-3">INFRASTRUCTURE</p>
                 <div className="flex flex-wrap gap-2">
                   {["Docker", "Linux", "VMWare", "Windows Server"].map((skill) => (
                     <span key={skill} className="tech-tag">{skill}</span>
@@ -105,7 +105,7 @@ export default function About() {
 
         {/* Bottom Row: Experience - Full Width */}
         <div>
-          <p className="text-xs font-mono text-[var(--muted)] tracking-widest mb-8">EXPERIENCE</p>
+          <p className="text-xs font-mono text-[#666666] dark:text-[#999999] tracking-widest mb-8">EXPERIENCE</p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {experiences.map((exp) => (
               <div
@@ -113,12 +113,12 @@ export default function About() {
                 className="p-6 border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] group hover:border-[#111111] dark:hover:border-white/30 transition-colors"
               >
                 <div className="flex justify-between items-start mb-4">
-                  <span className="text-xs font-mono text-[var(--muted)]">({exp.id})</span>
-                  <span className="text-xs font-mono text-[var(--muted)]">{exp.period}</span>
+                  <span className="text-xs font-mono text-[#666666] dark:text-[#999999]">({exp.id})</span>
+                  <span className="text-xs font-mono text-[#666666] dark:text-[#999999]">{exp.period}</span>
                 </div>
                 <h3 className="text-lg font-black mb-1 tracking-tight text-[#111111] dark:text-[#F3F3F3]">{exp.role.toUpperCase()}</h3>
-                <p className="text-sm font-mono text-[var(--muted)] mb-3">{exp.company}</p>
-                <p className="text-sm text-[var(--muted)] leading-relaxed line-clamp-3">
+                <p className="text-sm font-mono text-[#666666] dark:text-[#999999] mb-3">{exp.company}</p>
+                <p className="text-sm text-[#666666] dark:text-[#999999] leading-relaxed line-clamp-3">
                   {exp.description}
                 </p>
               </div>

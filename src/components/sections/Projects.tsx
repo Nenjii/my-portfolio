@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useMemo } from "react";
 import { ArrowUpRight, ExternalLink } from "lucide-react";
 
 interface Project {
@@ -15,6 +16,8 @@ interface Project {
 }
 
 export default function Projects() {
+  const [activeFilter, setActiveFilter] = useState<string>("All");
+  
   const projects: Project[] = [
     {
       id: "01",
@@ -70,37 +73,80 @@ export default function Projects() {
     },
   ];
 
+  // Extract unique categories for filter buttons
+  const categories = useMemo(() => {
+    const cats = ["All", ...new Set(projects.map(p => {
+      // Simplify category names for filtering
+      if (p.category.includes("Web")) return "Web";
+      if (p.category.includes("Education") || p.category.includes("Software")) return "Education";
+      if (p.category.includes("System") || p.category.includes("Docker")) return "DevOps";
+      if (p.category.includes("Cybersecurity")) return "Security";
+      return p.category;
+    }))];
+    return cats;
+  }, []);
+
+  // Filter projects based on active filter
+  const filteredProjects = useMemo(() => {
+    if (activeFilter === "All") return projects;
+    return projects.filter(p => {
+      if (activeFilter === "Web" && p.category.includes("Web")) return true;
+      if (activeFilter === "Education" && (p.category.includes("Education") || p.category.includes("Software"))) return true;
+      if (activeFilter === "DevOps" && (p.category.includes("System") || p.category.includes("Docker"))) return true;
+      if (activeFilter === "Security" && p.category.includes("Cybersecurity")) return true;
+      return false;
+    });
+  }, [activeFilter]);
+
   // Calculate grid layout - last item spans 2 cols if odd number
-  const getGridClass = (index: number, total: number) => {
+  const getGridClass = (index: number, total: number, project: Project) => {
     // Featured project always spans 2 cols and 2 rows
-    if (projects[index].featured) return "md:col-span-2 md:row-span-2";
+    if (project.featured) return "md:col-span-2 md:row-span-2";
     // Last item spans 2 cols if odd number of remaining items (excluding featured)
-    const nonFeaturedCount = projects.filter(p => !p.featured).length;
-    const isLastNonFeatured = index === total - 1 && !projects[index].featured;
+    const nonFeaturedCount = filteredProjects.filter(p => !p.featured).length;
+    const isLastNonFeatured = index === total - 1 && !project.featured;
     if (isLastNonFeatured && nonFeaturedCount % 2 === 1) return "md:col-span-2";
     return "";
   };
 
   return (
-    <section id="work" className="py-24 px-6 border-t border-[var(--border)]/20 bg-[#F3F3F3] dark:bg-[#0A0A0A]">
+    <section id="work" className="py-24 px-6 border-t border-[#111111]/10 dark:border-white/10 bg-[#F3F3F3] dark:bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-16">
-          <p className="text-xs font-mono text-[var(--muted)] tracking-widest mb-4">(02) — WORK</p>
+          <p className="text-xs font-mono text-[#666666] dark:text-[#999999] tracking-widest mb-4">(02) — WORK</p>
           <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-[#111111] dark:text-[#F3F3F3]">
             SELECTED<br />WORKS
           </h2>
         </div>
 
+        {/* Filter Buttons */}
+        <div className="flex flex-wrap gap-3 mb-12">
+          {categories.map((category) => (
+            <button
+              key={category}
+              onClick={() => setActiveFilter(category)}
+              className={`px-4 py-2 text-xs font-mono tracking-wider border transition-all duration-200 ${
+                activeFilter === category
+                  ? "bg-[#111111] dark:bg-[#F3F3F3] text-white dark:text-[#0A0A0A] border-[#111111] dark:border-[#F3F3F3]"
+                  : "bg-transparent text-[#111111] dark:text-[#F3F3F3] border-[#111111]/20 dark:border-white/20 hover:border-[#111111] dark:hover:border-white"
+              }`}
+              aria-pressed={activeFilter === category}
+            >
+              {category.toUpperCase()}
+            </button>
+          ))}
+        </div>
+
         {/* Bento Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
+          {filteredProjects.map((project, index) => (
             <a
               key={project.id}
               href={project.link}
               target={project.link.startsWith("http") ? "_blank" : undefined}
               rel={project.link.startsWith("http") ? "noopener noreferrer" : undefined}
-              className={`group relative bg-white dark:bg-[#111111] border border-[#111111] dark:border-white/20 p-6 flex flex-col transition-all duration-300 hover:shadow-[4px_4px_0px_0px_#111111] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] ${getGridClass(index, projects.length)}`}
+              className={`group relative bg-white dark:bg-[#111111] border border-[#111111] dark:border-white/20 p-6 flex flex-col transition-all duration-300 hover:shadow-[4px_4px_0px_0px_#111111] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] ${getGridClass(index, filteredProjects.length, project)}`}
             >
               {/* Featured Project with Browser Window Preview */}
               {project.featured && project.livePreview && (
@@ -113,7 +159,7 @@ export default function Projects() {
                       <div className="w-3 h-3 rounded-full bg-[#28c840]" />
                     </div>
                     <div className="flex-1 mx-4">
-                      <div className="bg-white dark:bg-[#1a1a1a] rounded-md px-3 py-1 text-[10px] font-mono text-[var(--muted)] truncate max-w-md">
+                      <div className="bg-white dark:bg-[#1a1a1a] rounded-md px-3 py-1 text-[10px] font-mono text-[#666666] dark:text-[#999999] truncate max-w-md">
                         {project.livePreview}
                       </div>
                     </div>
@@ -140,19 +186,19 @@ export default function Projects() {
 
               {/* Project Number & Category */}
               <div className="flex items-center justify-between mb-3">
-                <span className="text-xs font-mono text-[var(--muted)]">({project.id})</span>
-                <span className="text-xs font-mono text-[var(--muted)] tracking-widest">
+                <span className="text-xs font-mono text-[#666666] dark:text-[#999999]">({project.id})</span>
+                <span className="text-xs font-mono text-[#666666] dark:text-[#999999] tracking-widest">
                   {project.category.toUpperCase()}
                 </span>
               </div>
 
               {/* Title */}
-              <h3 className="text-xl md:text-2xl font-black tracking-tight mb-3 group-hover:underline underline-offset-4">
+              <h3 className="text-xl md:text-2xl font-black tracking-tight mb-3 group-hover:underline underline-offset-4 text-[#111111] dark:text-[#F3F3F3]">
                 {project.title.toUpperCase()}
               </h3>
 
               {/* Description */}
-              <p className="text-sm text-[var(--muted)] leading-relaxed mb-6 flex-grow line-clamp-3">
+              <p className="text-sm text-[#666666] dark:text-[#999999] leading-relaxed mb-6 flex-grow line-clamp-3">
                 {project.description}
               </p>
 
@@ -161,7 +207,7 @@ export default function Projects() {
                 {project.tags.map((tag) => (
                   <span
                     key={tag}
-                    className="text-xs px-2 py-1 bg-[#f0f0f0] dark:bg-white/10 text-[var(--muted)] font-mono rounded"
+                    className="text-xs px-2 py-1 bg-[#f0f0f0] dark:bg-white/10 text-[#666666] dark:text-[#999999] font-mono rounded"
                   >
                     {tag}
                   </span>
@@ -170,8 +216,8 @@ export default function Projects() {
 
               {/* Action Link */}
               <div className="flex items-center justify-between mt-auto pt-4 border-t border-[#111111]/10 dark:border-white/10">
-                <span className="text-xs font-mono text-[var(--muted)]">{project.year}</span>
-                <span className="text-sm font-mono flex items-center gap-1 group-hover:gap-2 transition-all">
+                <span className="text-xs font-mono text-[#666666] dark:text-[#999999]">{project.year}</span>
+                <span className="text-sm font-mono flex items-center gap-1 group-hover:gap-2 transition-all text-[#111111] dark:text-[#F3F3F3]">
                   View Project <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </span>
               </div>

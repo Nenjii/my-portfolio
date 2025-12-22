@@ -5,14 +5,14 @@ import TechStackMarquee from "@/components/ui/TechStackMarquee";
 
 export default function Hero() {
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-center">
+    <section id="home" className="min-h-screen flex flex-col justify-center bg-[#F3F3F3] dark:bg-[#0A0A0A]">
       <div className="px-6">
         <div className="max-w-7xl mx-auto w-full">
           {/* Main content grid with Profile Card - aligned from top */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start">
             {/* Left side - Typography and info */}
             <div className="lg:col-span-2 order-2 lg:order-1">
-              <p className="text-xs font-mono text-[var(--muted)] tracking-widest mb-6">
+              <p className="text-xs font-mono text-[#666666] dark:text-[#999999] tracking-widest mb-6">
                 (01) — INTRODUCTION
               </p>
 
@@ -29,15 +29,15 @@ export default function Hero() {
                   deletingSpeed={40}
                   pauseDuration={2000}
                   loop={true}
-                  className="text-xl md:text-2xl font-mono text-[var(--muted)] tracking-widest"
+                  className="text-xl md:text-2xl font-mono text-[#666666] dark:text-[#999999] tracking-widest"
                 />
               </div>
 
-              <h1 className="text-[12vw] md:text-[8vw] font-black leading-[0.85] tracking-tighter mb-8">
+              <h1 className="text-[12vw] md:text-[8vw] font-black leading-[0.85] tracking-tighter mb-8 text-[#111111] dark:text-[#F3F3F3]">
                 Hi! I am <GradientText>Niño</GradientText>
               </h1>
 
-              <p className="text-lg text-[var(--muted)] leading-relaxed max-w-lg mb-8">
+              <p className="text-lg text-[#666666] dark:text-[#999999] leading-relaxed max-w-lg mb-8">
                 System administrator and web developer crafting robust
                 digital systems with clean, efficient code. Based in the
                 Philippines.
@@ -47,13 +47,13 @@ export default function Hero() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="#work"
-                  className="px-8 py-4 bg-[var(--foreground)] text-[var(--background)] font-black text-sm tracking-widest text-center hover:opacity-80 transition-all"
+                  className="px-8 py-4 bg-[#111111] dark:bg-[#F3F3F3] text-[#F3F3F3] dark:text-[#0A0A0A] font-black text-sm tracking-widest text-center hover:opacity-80 transition-all"
                 >
                   VIEW PROJECTS
                 </a>
                 <a
                   href="#contact"
-                  className="px-8 py-4 bg-transparent border border-[var(--foreground)] text-[var(--foreground)] font-black text-sm tracking-widest text-center hover:bg-[var(--foreground)] hover:text-[var(--background)] transition-all"
+                  className="px-8 py-4 bg-transparent border border-[#111111] dark:border-[#F3F3F3] text-[#111111] dark:text-[#F3F3F3] font-black text-sm tracking-widest text-center hover:bg-[#111111] dark:hover:bg-[#F3F3F3] hover:text-[#F3F3F3] dark:hover:text-[#0A0A0A] transition-all"
                 >
                   GET IN TOUCH
                 </a>

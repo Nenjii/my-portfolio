@@ -71,12 +71,12 @@ export default function Blogs() {
   ];
 
   return (
-    <section id="blogs" className="py-24 px-6 border-t border-[var(--border)]/20 bg-[#F3F3F3] dark:bg-[#0A0A0A]">
+    <section id="blogs" className="py-24 px-6 border-t border-[#111111]/10 dark:border-white/10 bg-[#F3F3F3] dark:bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-16 flex items-end justify-between">
           <div>
-            <p className="text-xs font-mono text-[var(--muted)] tracking-widest mb-4">(03) — WRITING</p>
+            <p className="text-xs font-mono text-[#666666] dark:text-[#999999] tracking-widest mb-4">(03) — WRITING</p>
             <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-[#111111] dark:text-[#F3F3F3]">
               BLOGS &<br />ARTICLES
             </h2>
@@ -95,7 +95,7 @@ export default function Blogs() {
               className="group block bg-white dark:bg-[#111111] border border-[#111111] dark:border-white/20 p-5 transition-all duration-300 hover:shadow-[4px_4px_0px_0px_#111111] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)]"
             >
               {/* Meta Row */}
-              <div className="flex items-center justify-between mb-3 text-xs font-mono text-[var(--muted)]">
+              <div className="flex items-center justify-between mb-3 text-xs font-mono text-[#666666] dark:text-[#999999]">
                 <span className="flex items-center gap-1">
                   <Clock size={12} />
                   {post.readTime}
@@ -104,12 +104,12 @@ export default function Blogs() {
               </div>
 
               {/* Title */}
-              <h3 className="text-lg font-bold tracking-tight mb-2 group-hover:underline underline-offset-2 line-clamp-2">
+              <h3 className="text-lg font-bold tracking-tight mb-2 group-hover:underline underline-offset-2 line-clamp-2 text-[#111111] dark:text-[#F3F3F3]">
                 {post.title}
               </h3>
 
               {/* Excerpt */}
-              <p className="text-sm text-[var(--muted)] leading-relaxed mb-4 line-clamp-2">
+              <p className="text-sm text-[#666666] dark:text-[#999999] leading-relaxed mb-4 line-clamp-2">
                 {post.excerpt}
               </p>
 
@@ -118,7 +118,7 @@ export default function Blogs() {
                 {post.tags.slice(0, 3).map((tag) => (
                   <span
                     key={tag}
-                    className="text-[10px] px-2 py-0.5 bg-[#f0f0f0] dark:bg-white/10 text-[var(--muted)] font-mono rounded"
+                    className="text-[10px] px-2 py-0.5 bg-[#f0f0f0] dark:bg-white/10 text-[#666666] dark:text-[#999999] font-mono rounded"
                   >
                     {tag}
                   </span>

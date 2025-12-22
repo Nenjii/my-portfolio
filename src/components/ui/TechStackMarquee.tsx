@@ -20,14 +20,14 @@ export default function TechStackMarquee() {
 
   return (
     <div className="w-full overflow-hidden py-8">
-      <p className="text-xs font-mono text-[var(--muted)] mb-6 px-6 max-w-7xl mx-auto tracking-widest">
+      <p className="text-xs font-mono text-[#666666] dark:text-[#999999] mb-6 px-6 max-w-7xl mx-auto tracking-widest">
         TECH STACK
       </p>
       
       <div className="relative">
         {/* Gradient masks for fade effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[var(--background)] to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[var(--background)] to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#F3F3F3] dark:from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#F3F3F3] dark:from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
         
         {/* Marquee container */}
         <div className="flex animate-marquee">
@@ -45,7 +45,7 @@ export default function TechStackMarquee() {
                   style={{ filter: tech.name === "Next.js" ? "var(--logo-filter, none)" : "none" }}
                 />
               </div>
-              <span className="text-sm font-medium text-[var(--foreground)] whitespace-nowrap">
+              <span className="text-sm font-medium text-[#111111] dark:text-[#F3F3F3] whitespace-nowrap">
                 {tech.name}
               </span>
             </div>
