@@ -33,13 +33,13 @@ export default function Projects() {
     },
     {
       id: "02",
-      title: "VB.NET Learning Modules",
-      category: "Education / Software",
-      year: "2025",
+      title: "IT Learning Modules",
+      category: "Education / Resources",
+      year: "2024",
       description:
-        "Interactive educational modules for students focusing on MDI forms and code refactoring.",
-      tags: ["VB.NET", "Education", "Windows Forms"],
-      link: "#",
+        "Developed comprehensive, structured learning modules for various IT subjects to enhance student comprehension and practical skill application.",
+      tags: ["Modules", "Education", "Resources"],
+      link: "https://github.com/Nenjii/IT-LEARNING-MODULES",
     },
     {
       id: "03",
@@ -53,11 +53,11 @@ export default function Projects() {
     },
     {
       id: "04",
-      title: "Tennis Club Management",
-      category: "Web / Organization",
+      title: "Sports Club Management System",
+      category: "Web App / Management",
       year: "2025",
       description:
-        "SEC-registered platform for tournament scheduling and club membership management.",
+        "A platform for the Jones Sports enthusiast designed to manage memberships, organize tournaments, and handle club logistics efficiently.",
       tags: ["Next.js", "React", "MySQL", "Tailwind"],
       link: "#",
     },

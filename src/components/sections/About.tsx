@@ -110,15 +110,10 @@ export default function About() {
           <div>
             <p className="text-xs font-mono text-[#666666] dark:text-[#999999] tracking-widest mb-6">BIO</p>
             <p className="text-lg text-[#111111] dark:text-[#F3F3F3]/80 leading-relaxed mb-6">
-              I am a multi-disciplinary developer focusing on robust system
-              administration and clean code. My journey started with a passion for
-              technology and has evolved into expertise across web development,
-              server management, and cybersecurity.
+              I am a multi-disciplinary developer with a focus on robust system administration and "vibe coding." My journey began with a curiosity for technology and has evolved into deep expertise across Web Development, Server Management, and Cybersecurity.
             </p>
             <p className="text-lg text-[#111111] dark:text-[#F3F3F3]/80 leading-relaxed">
-              When not online, I am active in the local sports community organizing
-              tennis events and running marathons. I believe in continuous learning
-              and staying updated with the latest technologies.
+             When I'm not online, I am deeply active in the local sports community. I organize sports events (Badminton, Tennis, Volleyball) and train for marathons. I believe in the balance of continuous technical learning and maintaining a healthy, active lifestyle.
             </p>
           </div>
 

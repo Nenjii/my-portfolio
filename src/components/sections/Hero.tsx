@@ -38,9 +38,7 @@ export default function Hero() {
               </h1>
 
               <p className="text-lg text-[#666666] dark:text-[#999999] leading-relaxed max-w-lg mb-8">
-                System administrator and web developer crafting robust
-                digital systems with clean, efficient code. Based in the
-                Philippines.
+                I specialize in rapid web development, blending technical precision with creative flow. I bridge the gap between complex code and user-centric design.
               </p>
 
               {/* CTA Buttons */}
