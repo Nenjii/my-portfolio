@@ -94,7 +94,7 @@ export default function About() {
   };
 
   return (
-    <section id="about" className="py-24 px-6 border-t border-[#111111]/10 dark:border-white/10 bg-[#F3F3F3] dark:bg-[#0A0A0A] transition-colors duration-300">
+    <section id="about" className="py-24 px-6 border-t border-[#111111]/10 dark:border-white/10 transition-colors duration-300 bg-transparent">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-16">
@@ -183,7 +183,7 @@ export default function About() {
               return (
                 <div
                   key={exp.id}
-                  className={`p-6 border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] group hover:border-[#111111] dark:hover:border-white/30 transition-colors ${spanClass}`}
+                  className={`p-6 border border-[#111111]/10 dark:border-white/10 bg-white dark:bg-[#111111] hover:border-[#111111] dark:hover:border-white/30 transition-colors ${spanClass}`}
                 >
                   <div className="flex justify-between items-start mb-4">
                     <span className="text-xs font-mono text-[#666666] dark:text-[#999999]">({exp.id})</span>

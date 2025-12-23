@@ -9,7 +9,7 @@ import NavigationDock from "@/components/layout/NavigationDock";
 
 export default function Home() {
   return (
-    <main className="bg-[#F3F3F3] dark:bg-[#0A0A0A] text-[#111111] dark:text-[#F3F3F3] transition-colors duration-300">
+    <main className="transition-colors duration-300">
       {/* STATUS HEADER - Separate component for easy modification */}
       <StatusHeader
         statuses={["Brewing Coffee ☕", "Accepting Projects 🚀", "Available for Work ✨"]}

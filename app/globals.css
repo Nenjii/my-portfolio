@@ -19,6 +19,7 @@
 }
 
 /* Dark Mode - Inverted Swiss Editorial */
+html.dark,
 .dark {
   --background: #0A0A0A;
   --foreground: #F3F3F3;
@@ -26,6 +27,7 @@
   --muted: #999999;
   --border: #F3F3F3;
   --grid-color: rgba(243, 243, 243, 0.06);
+  --logo-filter: invert(1);
 }
 
 * {
@@ -35,6 +37,12 @@
 html {
   scroll-behavior: smooth;
   scroll-snap-type: y mandatory;
+  color-scheme: light;
+  transition: color-scheme 0.3s ease;
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 body {
@@ -46,10 +54,10 @@ body {
     linear-gradient(var(--grid-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
   background-size: 20px 20px;
+  background-attachment: fixed;
   transition: background-color 0.3s ease, color 0.3s ease, background-image 0.3s ease;
 }
 
-.dark body,
 html.dark body {
   color: #F3F3F3;
   background: #0A0A0A;

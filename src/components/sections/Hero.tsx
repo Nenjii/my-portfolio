@@ -5,7 +5,7 @@ import TechStackMarquee from "@/components/ui/TechStackMarquee";
 
 export default function Hero() {
   return (
-    <section id="home" className="min-h-screen flex flex-col justify-center bg-[#F3F3F3] dark:bg-[#0A0A0A] transition-colors duration-300">
+    <section id="home" className="min-h-screen flex flex-col justify-center transition-colors duration-300 bg-transparent">
       <div className="px-6">
         <div className="max-w-7xl mx-auto w-full">
           {/* Main content grid with Profile Card - aligned from top */}

@@ -110,7 +110,7 @@ export default function Projects() {
   };
 
   return (
-    <section id="work" className="py-24 px-6 border-t border-[#111111]/10 dark:border-white/10 bg-[#F3F3F3] dark:bg-[#0A0A0A] transition-colors duration-300">
+    <section id="work" className="py-24 px-6 border-t border-[#111111]/10 dark:border-white/10 transition-colors duration-300 bg-transparent">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="mb-16">
@@ -146,7 +146,7 @@ export default function Projects() {
               href={project.link}
               target={project.link.startsWith("http") ? "_blank" : undefined}
               rel={project.link.startsWith("http") ? "noopener noreferrer" : undefined}
-              className={`group relative bg-white dark:bg-[#111111] border border-[#111111] dark:border-white/20 p-6 flex flex-col transition-all duration-300 hover:shadow-[4px_4px_0px_0px_#111111] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] ${getGridClass(index, filteredProjects.length, project)}`}
+              className={`group relative bg-white dark:bg-[#111111] border border-[#111111]/10 dark:border-white/20 p-6 flex flex-col transition-all duration-300 hover:border-[#111111] dark:hover:border-white/40 hover:shadow-[4px_4px_0px_0px_#111111] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] ${getGridClass(index, filteredProjects.length, project)}`}
             >
               {/* Featured Project with Browser Window Preview */}
               {project.featured && project.livePreview && (

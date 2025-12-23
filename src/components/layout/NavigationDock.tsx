@@ -1,8 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { Home, User, FolderOpen, Mail, Sun, Moon, Command, FileText } from "lucide-react";
-import { useTheme } from "@/components/layout/ThemeProvider";
+import { Home, User, FolderOpen, Mail, Command, FileText } from "lucide-react";
 import SpotlightSearch from "@/components/ui/SpotlightSearch";
 
 interface NavItem {
@@ -12,7 +11,6 @@ interface NavItem {
 }
 
 export default function NavigationDock() {
-  const { theme, toggleTheme } = useTheme();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isSpotlightOpen, setIsSpotlightOpen] = useState(false);
 
@@ -103,36 +101,6 @@ export default function NavigationDock() {
             }}
           >
             Search ⌘K
-          </span>
-        </button>
-
-        {/* Divider */}
-        <div className="w-px h-8 bg-[#111111]/10 dark:bg-white/10 mx-1" />
-
-        {/* Dark Mode Toggle */}
-        <button
-          onClick={toggleTheme}
-          className="dock-icon-item group relative flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 ease-out hover:bg-[#111111]/5 dark:hover:bg-white/10"
-          onMouseEnter={() => setHoveredIndex(navItems.length + 1)}
-          onMouseLeave={() => setHoveredIndex(null)}
-          style={{
-            transform: hoveredIndex === navItems.length + 1 ? "scale(1.25) translateY(-8px)" : "scale(1)",
-          }}
-          aria-label="Toggle dark mode"
-        >
-          <span className="text-[#111111] dark:text-white transition-colors">
-            {theme === "light" ? <Moon size={24} /> : <Sun size={24} />}
-          </span>
-          
-          {/* Tooltip */}
-          <span
-            className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-[#111111] dark:bg-white text-white dark:text-[#111111] text-xs font-mono rounded-md whitespace-nowrap transition-all duration-200 pointer-events-none"
-            style={{
-              opacity: hoveredIndex === navItems.length + 1 ? 1 : 0,
-              transform: hoveredIndex === navItems.length + 1 ? "translateY(0)" : "translateY(4px)",
-            }}
-          >
-            {theme === "light" ? "Dark Mode" : "Light Mode"}
           </span>
         </button>
       </div>
