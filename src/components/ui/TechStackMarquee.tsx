@@ -26,8 +26,8 @@ export default function TechStackMarquee() {
       
       <div className="relative">
         {/* Gradient masks for fade effect */}
-        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#F3F3F3] dark:from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#F3F3F3] dark:from-[#0A0A0A] to-transparent z-10 pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-[#111112ff] dark:from-[#111112ff] to-transparent z-10 pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-[#171718ff] dark:from-[#171718ff] to-transparent z-10 pointer-events-none" />
         
         {/* Marquee container */}
         <div className="flex animate-marquee">

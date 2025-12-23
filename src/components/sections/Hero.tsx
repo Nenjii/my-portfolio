@@ -33,7 +33,7 @@ export default function Hero() {
                 />
               </div>
 
-              <h1 className="text-[12vw] md:text-[8vw] font-black leading-[0.85] tracking-tighter mb-8 text-[#111111] dark:text-[#F3F3F3]">
+              <h1 className="text-[12vw] md:text-[8vw] font-black leading-[0.9] tracking-tighter mb-8 text-[#111111] dark:text-[#F3F3F3] overflow-visible">
                 Hi! I am <GradientText>Niño</GradientText>
               </h1>
 
