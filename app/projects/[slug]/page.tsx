@@ -14,21 +14,21 @@ function parseContent(content: string): React.ReactNode {
   return paragraphs.map((paragraph, index) => {
     if (paragraph.startsWith("## ")) {
       return (
-        <h2 key={index} className="mt-12 mb-6 text-3xl font-black tracking-tight text-[#F3F3F3]">
+        <h2 key={index} className="mt-12 mb-6 text-3xl font-black tracking-tight text-[#111111] dark:text-[#F3F3F3]">
           {paragraph.replace("## ", "")}
         </h2>
       );
     }
     if (paragraph.startsWith("### ")) {
       return (
-        <h3 key={index} className="mt-8 mb-4 text-2xl font-bold text-[#F3F3F3]">
+        <h3 key={index} className="mt-8 mb-4 text-2xl font-bold text-[#111111] dark:text-[#F3F3F3]">
           {paragraph.replace("### ", "")}
         </h3>
       );
     }
     if (paragraph.startsWith("> ")) {
       return (
-        <blockquote key={index} className="border-l-4 border-blue-500 pl-6 my-8 py-4 bg-blue-500/5 rounded-r-lg italic text-lg text-[#999999]">
+        <blockquote key={index} className="border-l-4 border-blue-500 pl-6 my-8 py-4 bg-blue-500/5 rounded-r-lg italic text-lg text-[#666666] dark:text-[#999999]">
           {paragraph.replace("> ", "")}
         </blockquote>
       );
@@ -38,7 +38,7 @@ function parseContent(content: string): React.ReactNode {
       return (
         <ul key={index} className="list-disc list-inside space-y-2 my-6 ml-4">
           {items.map((item, i) => (
-            <li key={i} className="text-lg leading-relaxed text-[#D1D5DB]">
+            <li key={i} className="text-lg leading-relaxed text-[#666666] dark:text-[#D1D5DB]">
               {item.replace(/^[-*]\s/, "")}
             </li>
           ))}
@@ -48,21 +48,21 @@ function parseContent(content: string): React.ReactNode {
     if (paragraph.startsWith("```")) {
       const code = paragraph.replace(/```\w*\n?/, "").replace(/```$/, "");
       return (
-        <pre key={index} className="bg-[#1F2937] p-6 rounded-lg overflow-x-auto my-6">
-          <code className="text-sm text-[#F3F3F3] font-mono">{code}</code>
+        <pre key={index} className="bg-[#e5e7eb] dark:bg-[#1F2937] p-6 rounded-lg overflow-x-auto my-6">
+          <code className="text-sm text-[#111111] dark:text-[#F3F3F3] font-mono">{code}</code>
         </pre>
       );
     }
 
     let formattedText = paragraph;
-    formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-[#F3F3F3]">$1</strong>');
-    formattedText = formattedText.replace(/`(.*?)`/g, '<code class="bg-[#1F2937] px-2 py-1 rounded text-blue-400 font-mono text-sm">$1</code>');
-    formattedText = formattedText.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-blue-400 underline underline-offset-4 hover:text-blue-300" target="_blank" rel="noopener noreferrer">$1</a>');
+    formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-[#111111] dark:text-[#F3F3F3]">$1</strong>');
+    formattedText = formattedText.replace(/`(.*?)`/g, '<code class="bg-[#e5e7eb] dark:bg-[#1F2937] px-2 py-1 rounded text-blue-600 dark:text-blue-400 font-mono text-sm">$1</code>');
+    formattedText = formattedText.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" class="text-blue-600 dark:text-blue-400 underline underline-offset-4 hover:text-blue-500 dark:hover:text-blue-300" target="_blank" rel="noopener noreferrer">$1</a>');
 
     return (
       <p 
         key={index} 
-        className="text-lg leading-relaxed text-[#D1D5DB] my-6"
+        className="text-lg leading-relaxed text-[#666666] dark:text-[#D1D5DB] my-6"
         dangerouslySetInnerHTML={{ __html: formattedText }}
       />
     );
@@ -97,18 +97,18 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-[#0A0A0A] flex items-center justify-center">
-        <Loader2 className="w-8 h-8 animate-spin text-[#999999]" />
+      <main className="min-h-screen bg-[#fafafa] dark:bg-[#0A0A0A] flex items-center justify-center">
+        <Loader2 className="w-8 h-8 animate-spin text-[#666666] dark:text-[#999999]" />
       </main>
     );
   }
 
   if (notFound || !project) {
     return (
-      <main className="min-h-screen bg-[#0A0A0A] flex items-center justify-center">
+      <main className="min-h-screen bg-[#fafafa] dark:bg-[#0A0A0A] flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-black text-[#F3F3F3] mb-4">Project Not Found</h1>
-          <Link href="/projects" className="text-blue-400 hover:underline">
+          <h1 className="text-4xl font-black text-[#111111] dark:text-[#F3F3F3] mb-4">Project Not Found</h1>
+          <Link href="/projects" className="text-blue-600 dark:text-blue-400 hover:underline">
             ← Back to Projects
           </Link>
         </div>
@@ -157,7 +157,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
                 />
               </div>
             </div>
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A0A0A]/50 to-[#0A0A0A]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#fafafa]/50 dark:via-[#0A0A0A]/50 to-[#fafafa] dark:to-[#0A0A0A]" />
           </div>
         ) : project.coverImage ? (
           <div className="absolute inset-0 h-[50vh]">
@@ -166,14 +166,14 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
               alt={project.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A0A0A]/50 to-[#0A0A0A]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#fafafa]/50 dark:via-[#0A0A0A]/50 to-[#fafafa] dark:to-[#0A0A0A]" />
           </div>
         ) : null}
 
         <div className="relative max-w-4xl mx-auto px-6 pt-12 pb-8">
           <Link
             href="/projects"
-            className="inline-flex items-center gap-2 text-sm font-mono text-[#999999] hover:text-white transition-colors mb-8"
+            className="inline-flex items-center gap-2 text-sm font-mono text-[#666666] dark:text-[#999999] hover:text-[#111111] dark:hover:text-white transition-colors mb-8"
           >
             <ArrowLeft size={16} />
             BACK TO PROJECTS

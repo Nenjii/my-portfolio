@@ -77,7 +77,7 @@ export default function StatusHeader({
           alt="Portfolio Logo" 
           width={30} 
           height={30}
-         
+          className="dark:invert"
           priority
         />
       </div>

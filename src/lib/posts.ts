@@ -188,6 +188,7 @@ export async function getPostBySlug(slug: string) {
       content: data.content,
       coverImage: data.coverImage,
       category: data.category || 'General',
+      tags: data.tags || [],
       publishedAt: data.publishedAt?.toDate().toISOString() || null,
     };
   } catch (error: any) {
