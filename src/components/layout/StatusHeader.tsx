@@ -35,13 +35,14 @@ export default function StatusHeader({
           second: "2-digit",
         })
       );
-      // Short format for mobile (time only)
+      // Short format for mobile (time only with seconds)
       setCurrentTimeShort(
         new Date().toLocaleString("en-US", {
           timeZone: timezone,
           hour12: false,
           hour: "2-digit",
           minute: "2-digit",
+          second: "2-digit",
         })
       );
     };
