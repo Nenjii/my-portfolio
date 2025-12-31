@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Clock, ArrowLeft, Loader2 } from "lucide-react";
+import { Clock, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { getAllPublishedPosts } from "@/lib/posts";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 interface BlogPost {
   id: string;
@@ -98,10 +99,7 @@ export default function BlogList() {
         {/* Loading State */}
         {loading && (
           <div className="flex items-center justify-center py-24">
-            <div className="flex items-center gap-3 text-[#666666] dark:text-[#999999]">
-              <Loader2 size={24} className="animate-spin" />
-              <span className="font-mono text-sm">Loading articles...</span>
-            </div>
+            <LoadingSpinner text="Loading articles..." />
           </div>
         )}
 

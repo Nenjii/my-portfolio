@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Loader2, ArrowRight, Briefcase, MapPin, Calendar } from "lucide-react";
+import { ArrowRight, Briefcase, MapPin, Calendar } from "lucide-react";
 import Link from "next/link";
 import { getAllExperiences, Experience } from "@/lib/experience";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 // Format date range for display
 function formatDateRange(startDate: string, endDate: string | null, isCurrent: boolean): string {
@@ -78,10 +79,10 @@ export default function About() {
           <div>
             <p className="text-xs font-mono text-[#666666] dark:text-[#999999] tracking-widest mb-6">BIO</p>
             <p className="text-lg text-[#111111] dark:text-[#F3F3F3]/80 leading-relaxed mb-6">
-              I am a multi-disciplinary developer with a focus on robust system administration and "vibe coding." My journey began with a curiosity for technology and has evolved into deep expertise across Web Development, Server Management, and Cybersecurity.
+              I am a multi-disciplinary developer with a focus on robust system administration and &quot;vibe coding.&quot; My journey began with a curiosity for technology and has evolved into deep expertise across Web Development, Server Management, and Cybersecurity.
             </p>
             <p className="text-lg text-[#111111] dark:text-[#F3F3F3]/80 leading-relaxed">
-             When I'm not online, I am deeply active in the local sports community. I organize sports events (Badminton, Tennis, Volleyball) and train for marathons. I believe in the balance of continuous technical learning and maintaining a healthy, active lifestyle.
+             When I&apos;m not online, I am deeply active in the local sports community. I organize sports events (Badminton, Tennis, Volleyball) and train for marathons. I believe in the balance of continuous technical learning and maintaining a healthy, active lifestyle.
             </p>
           </div>
 
@@ -132,7 +133,7 @@ export default function About() {
 
           {loading ? (
             <div className="flex items-center justify-center py-16">
-              <Loader2 className="w-8 h-8 animate-spin text-[#999999]" />
+              <LoadingSpinner size="sm" text="Loading experience..." />
             </div>
           ) : error || experiences.length === 0 ? (
             <p className="text-center text-[#666666] dark:text-[#999999] py-12">

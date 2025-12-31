@@ -50,12 +50,16 @@ export default function TypewriterText({
         }, deletingSpeed);
         return () => clearTimeout(deleteTimeout);
       } else {
-        setIsDeleting(false);
-        if (loop) {
-          setTextIndex((prev) => (prev + 1) % texts.length);
-        } else if (textIndex < texts.length - 1) {
-          setTextIndex((prev) => prev + 1);
-        }
+        // Schedule state updates to avoid synchronous setState in effect
+        const nextTimeout = setTimeout(() => {
+          setIsDeleting(false);
+          if (loop) {
+            setTextIndex((prev) => (prev + 1) % texts.length);
+          } else if (textIndex < texts.length - 1) {
+            setTextIndex((prev) => prev + 1);
+          }
+        }, 0);
+        return () => clearTimeout(nextTimeout);
       }
     } else {
       if (currentText.length < currentFullText.length) {
@@ -65,7 +69,10 @@ export default function TypewriterText({
         return () => clearTimeout(typeTimeout);
       } else {
         if (loop || textIndex < texts.length - 1) {
-          setIsWaiting(true);
+          const waitTimeout = setTimeout(() => {
+            setIsWaiting(true);
+          }, 0);
+          return () => clearTimeout(waitTimeout);
         }
       }
     }

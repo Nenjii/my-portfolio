@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { ArrowLeft, ExternalLink, Github, Loader2, Search, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ExternalLink, Github, Search, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
 import { getPublishedProjects, Project } from "@/lib/projects";
+import { SkeletonCard } from "@/components/ui/LoadingSpinner";
 
 export default function ProjectsPage() {
   const [projects, setProjects] = useState<Project[]>([]);
@@ -88,7 +89,7 @@ export default function ProjectsPage() {
             MY WORKS
           </h1>
           <p className="text-lg text-[#666666] dark:text-[#999999] max-w-2xl">
-            A collection of projects I've worked on, from web applications to infrastructure setups and everything in between.
+            A collection of projects I&apos;ve worked on, from web applications to infrastructure setups and everything in between.
           </p>
         </div>
 
@@ -131,8 +132,10 @@ export default function ProjectsPage() {
 
         {/* Projects Grid */}
         {loading ? (
-          <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-8 h-8 animate-spin text-[#999999]" />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <SkeletonCard key={i} />
+            ))}
           </div>
         ) : error ? (
           <p className="text-center text-red-500 py-12">{error}</p>

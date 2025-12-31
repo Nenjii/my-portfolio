@@ -49,12 +49,16 @@ export default function RoleTypewriter({
         }, deletingSpeed);
         return () => clearTimeout(deleteTimeout);
       } else {
-        setIsDeleting(false);
-        if (loop) {
-          setRoleIndex((prev) => (prev + 1) % roles.length);
-        } else if (roleIndex < roles.length - 1) {
-          setRoleIndex((prev) => prev + 1);
-        }
+        // Schedule state updates to avoid synchronous setState in effect
+        const nextTimeout = setTimeout(() => {
+          setIsDeleting(false);
+          if (loop) {
+            setRoleIndex((prev) => (prev + 1) % roles.length);
+          } else if (roleIndex < roles.length - 1) {
+            setRoleIndex((prev) => prev + 1);
+          }
+        }, 0);
+        return () => clearTimeout(nextTimeout);
       }
     } else {
       if (currentText.length < currentRole.length) {
@@ -63,7 +67,10 @@ export default function RoleTypewriter({
         }, typingSpeed);
         return () => clearTimeout(typeTimeout);
       } else {
-        setIsWaiting(true);
+        const waitTimeout = setTimeout(() => {
+          setIsWaiting(true);
+        }, 0);
+        return () => clearTimeout(waitTimeout);
       }
     }
   }, [currentText, roleIndex, isDeleting, isWaiting, roles, typingSpeed, deletingSpeed, pauseDuration, loop]);

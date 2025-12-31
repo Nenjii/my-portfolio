@@ -150,7 +150,7 @@ export default function Contact() {
             <div className="mb-12">
               <p className="text-xs font-mono text-[#666666] dark:text-[#999999] tracking-widest mb-4">(04) — CONTACT</p>
               <h2 className="text-5xl md:text-7xl font-black tracking-tighter text-[#111111] dark:text-[#F3F3F3]">
-                LET'S<br />CONNECT
+                LET&apos;S<br />CONNECT
               </h2>
             </div>
             <p className="text-lg text-[#666666] dark:text-[#999999] leading-relaxed mb-8">

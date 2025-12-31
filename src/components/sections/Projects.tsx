@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
-import { ArrowUpRight, ExternalLink, Loader2, Github, ArrowRight } from "lucide-react";
+import { ArrowUpRight, ExternalLink, Github, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { getPublishedProjects, Project } from "@/lib/projects";
+import { SkeletonCard } from "@/components/ui/LoadingSpinner";
 
 export default function Projects() {
   const [activeFilter, setActiveFilter] = useState<string>("All");
@@ -89,8 +90,11 @@ export default function Projects() {
               SELECTED<br />WORKS
             </h2>
           </div>
-          <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-8 h-8 animate-spin text-[#999999]" />
+          {/* Skeleton loading cards */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3].map((i) => (
+              <SkeletonCard key={i} />
+            ))}
           </div>
         </div>
       </section>

@@ -19,7 +19,6 @@ import {
   getDocs,
   addDoc,
   serverTimestamp,
-  Timestamp,
 } from 'firebase/firestore';
 
 /**
@@ -76,10 +75,11 @@ export async function getLatestPosts(postLimit = 6) {
     });
 
     return posts;
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error fetching latest posts:', error);
     // Re-throw with context for better debugging
-    throw new Error(`Failed to fetch latest posts: ${error.message}`);
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    throw new Error(`Failed to fetch latest posts: ${message}`);
   }
 }
 
@@ -148,9 +148,10 @@ export async function createPost(postData: PostData) {
       updatedAt: new Date().toISOString(),
       publishedAt: postData.isPublished ? new Date().toISOString() : null,
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error creating post:', error);
-    throw new Error(`Failed to create post: ${error.message}`);
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    throw new Error(`Failed to create post: ${message}`);
   }
 }
 
@@ -191,9 +192,10 @@ export async function getPostBySlug(slug: string) {
       tags: data.tags || [],
       publishedAt: data.publishedAt?.toDate().toISOString() || null,
     };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error fetching post by slug:', error);
-    throw new Error(`Failed to fetch post: ${error.message}`);
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    throw new Error(`Failed to fetch post: ${message}`);
   }
 }
 
@@ -226,8 +228,9 @@ export async function getAllPublishedPosts(postLimit = 20) {
         publishedAt: data.publishedAt?.toDate().toISOString() || null,
       };
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('Error fetching all posts:', error);
-    throw new Error(`Failed to fetch posts: ${error.message}`);
+    const message = error instanceof Error ? error.message : 'Unknown error';
+    throw new Error(`Failed to fetch posts: ${message}`);
   }
 }

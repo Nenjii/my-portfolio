@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { ArrowLeft, Briefcase, MapPin, Calendar, Loader2, ExternalLink } from "lucide-react";
+import { ArrowLeft, Briefcase, MapPin, Calendar, ExternalLink } from "lucide-react";
 import Link from "next/link";
 import { getAllExperiences, Experience } from "@/lib/experience";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 // Format date range for display
 function formatDateRange(startDate: string, endDate: string | null, isCurrent: boolean): string {
@@ -84,7 +85,7 @@ export default function ExperiencePage() {
         {/* Experience Timeline */}
         {loading ? (
           <div className="flex items-center justify-center py-20">
-            <Loader2 className="w-8 h-8 animate-spin text-[#999999]" />
+            <LoadingSpinner text="Loading experience..." />
           </div>
         ) : error ? (
           <p className="text-center text-red-500 py-12">{error}</p>

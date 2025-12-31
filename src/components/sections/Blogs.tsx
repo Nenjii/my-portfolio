@@ -1,8 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Clock, ArrowUpRight, Loader2 } from "lucide-react";
+import { Clock, ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { getLatestPosts } from "@/lib/posts";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 interface BlogPost {
   id: string;
@@ -77,18 +79,15 @@ export default function Blogs() {
               BLOGS &<br />ARTICLES
             </h2>
           </div>
-          <a href="/blog" className="hidden md:flex items-center gap-2 text-sm font-mono hover:underline underline-offset-4 text-[#111111] dark:text-[#F3F3F3]">
+          <Link href="/blog" className="hidden md:flex items-center gap-2 text-sm font-mono hover:underline underline-offset-4 text-[#111111] dark:text-[#F3F3F3]">
             View All <ArrowUpRight size={14} />
-          </a>
+          </Link>
         </div>
 
         {/* Loading State */}
         {loading && (
           <div className="flex items-center justify-center py-24">
-            <div className="flex items-center gap-3 text-[#666666] dark:text-[#999999]">
-              <Loader2 size={24} className="animate-spin" />
-              <span className="font-mono text-sm">Loading articles...</span>
-            </div>
+            <LoadingSpinner text="Loading articles..." />
           </div>
         )}
 
@@ -162,9 +161,9 @@ export default function Blogs() {
 
         {/* Mobile View All Link */}
         <div className="mt-8 md:hidden text-center">
-          <a href="/blog" className="inline-flex items-center gap-2 text-sm font-mono hover:underline underline-offset-4 text-[#111111] dark:text-[#F3F3F3]">
+          <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-mono hover:underline underline-offset-4 text-[#111111] dark:text-[#F3F3F3]">
             View All Articles <ArrowUpRight size={14} />
-          </a>
+          </Link>
         </div>
       </div>
     </section>
