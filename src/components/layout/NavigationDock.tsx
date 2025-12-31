@@ -13,6 +13,7 @@ interface NavItem {
 export default function NavigationDock() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isSpotlightOpen, setIsSpotlightOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState<string>("#home");
 
   const openSpotlight = useCallback(() => {
     setIsSpotlightOpen(true);
@@ -20,6 +21,29 @@ export default function NavigationDock() {
 
   const closeSpotlight = useCallback(() => {
     setIsSpotlightOpen(false);
+  }, []);
+
+  // Detect active section on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = ["#home", "#about", "#work", "#blogs", "#contact"];
+      let currentSection = "#home";
+
+      for (const sectionId of sections) {
+        const element = document.querySelector(sectionId);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= window.innerHeight / 2) {
+            currentSection = sectionId;
+          }
+        }
+      }
+      setActiveSection(currentSection);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Check on mount
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   // Keyboard shortcut for Cmd+K / Ctrl+K
@@ -46,33 +70,44 @@ export default function NavigationDock() {
   return (
     <nav className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
       <div className="flex items-center gap-2 px-4 py-3 bg-white/80 dark:bg-black/80 backdrop-blur-xl border border-[#111111]/10 dark:border-white/10 rounded-full shadow-lg">
-        {navItems.map((item, index) => (
-          <a
-            key={item.href}
-            href={item.href}
-            className="dock-icon-item group relative flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 ease-out hover:bg-[#111111]/5 dark:hover:bg-white/10"
-            onMouseEnter={() => setHoveredIndex(index)}
-            onMouseLeave={() => setHoveredIndex(null)}
-            style={{
-              transform: hoveredIndex === index ? "scale(1.25) translateY(-8px)" : "scale(1)",
-            }}
-          >
-            <span className="text-[#111111] dark:text-white transition-colors">
-              {item.icon}
-            </span>
-            
-            {/* Tooltip */}
-            <span
-              className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-[#111111] dark:bg-white text-white dark:text-[#111111] text-xs font-mono rounded-md whitespace-nowrap transition-all duration-200 pointer-events-none"
+        {navItems.map((item, index) => {
+          const isActive = activeSection === item.href;
+          return (
+            <a
+              key={item.href}
+              href={item.href}
+              className={`dock-icon-item group relative flex items-center justify-center w-12 h-12 rounded-full transition-all duration-300 ease-out ${
+                isActive
+                  ? "bg-[#111111] dark:bg-[#F3F3F3] text-white dark:text-[#111111]"
+                  : "text-[#111111] dark:text-white hover:bg-[#111111]/5 dark:hover:bg-white/10"
+              }`}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseLeave={() => setHoveredIndex(null)}
               style={{
-                opacity: hoveredIndex === index ? 1 : 0,
-                transform: hoveredIndex === index ? "translateY(0)" : "translateY(4px)",
+                transform: hoveredIndex === index ? "scale(1.25) translateY(-8px)" : "scale(1)",
               }}
             >
-              {item.label}
-            </span>
-          </a>
-        ))}
+              <span className="transition-colors">
+                {item.icon}
+              </span>
+              
+              {/* Tooltip */}
+              <span
+                className={`absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1.5 text-xs font-mono rounded-md whitespace-nowrap transition-all duration-200 pointer-events-none ${
+                  isActive
+                    ? "bg-[#111111] dark:bg-[#F3F3F3] text-white dark:text-[#111111]"
+                    : "bg-[#111111] dark:bg-white text-white dark:text-[#111111]"
+                }`}
+                style={{
+                  opacity: hoveredIndex === index ? 1 : 0,
+                  transform: hoveredIndex === index ? "translateY(0)" : "translateY(4px)",
+                }}
+              >
+                {item.label}
+              </span>
+            </a>
+          );
+        })}
 
         {/* Divider */}
         <div className="w-px h-8 bg-[#111111]/10 dark:bg-white/10 mx-1" />

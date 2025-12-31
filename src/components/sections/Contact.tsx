@@ -2,6 +2,8 @@
 
 import { useState, FormEvent } from "react";
 import { Download, Mail, Copy, Check, Loader2, AlertCircle, CheckCircle } from "lucide-react";
+import { db } from "@/lib/firebase";
+import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 
 interface FormState {
   name: string;
@@ -85,22 +87,37 @@ export default function Contact() {
     setSubmitStatus("loading");
     
     try {
-      // Using Formspree - replace YOUR_FORM_ID with your actual Formspree form ID
-      const response = await fetch("https://formspree.io/f/xrbqkrbk", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+      // Save message to Firebase Firestore
+      await addDoc(collection(db, "messages"), {
+        name: formData.name.trim(),
+        email: formData.email.trim(),
+        message: formData.message.trim(),
+        createdAt: serverTimestamp(),
+        read: false,
       });
-      
-      if (response.ok) {
-        setSubmitStatus("success");
-        setFormData({ name: "", email: "", message: "" });
-        setTouched({});
-        setTimeout(() => setSubmitStatus("idle"), 5000);
-      } else {
-        throw new Error("Failed to submit");
+
+      // Send email notification
+      try {
+        await fetch("/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: formData.name.trim(),
+            email: formData.email.trim(),
+            message: formData.message.trim(),
+          }),
+        });
+      } catch (emailError) {
+        // Email is optional - don't fail if it doesn't send
+        console.warn("Email notification failed:", emailError);
       }
-    } catch {
+      
+      setSubmitStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+      setTouched({});
+      setTimeout(() => setSubmitStatus("idle"), 5000);
+    } catch (error) {
+      console.error("Error sending message:", error);
       setSubmitStatus("error");
       setTimeout(() => setSubmitStatus("idle"), 5000);
     }

@@ -1,6 +1,8 @@
 "use client";
 
-import { Clock, ArrowUpRight } from "lucide-react";
+import { useState, useEffect } from "react";
+import { Clock, ArrowUpRight, Loader2 } from "lucide-react";
+import { getLatestPosts } from "@/lib/posts";
 
 interface BlogPost {
   id: string;
@@ -8,67 +10,61 @@ interface BlogPost {
   excerpt: string;
   date: string;
   readTime: string;
-  tags: string[];
-  link: string;
+  slug: string;
+}
+
+// Helper to format ISO date string to readable date
+function formatDate(isoString: string | null): string {
+  if (!isoString) return "";
+  const date = new Date(isoString);
+  return date.toLocaleDateString("en-US", {
+    month: "short",
+    year: "numeric",
+  });
+}
+
+// Helper to estimate read time from content
+function estimateReadTime(content: string): string {
+  const wordsPerMinute = 200;
+  const wordCount = content?.split(/\s+/).length || 0;
+  const minutes = Math.ceil(wordCount / wordsPerMinute);
+  return `${minutes} min`;
 }
 
 export default function Blogs() {
-  const blogPosts: BlogPost[] = [
-    {
-      id: "01",
-      title: "Choosing Your Major: Why Network Management Matters",
-      excerpt: "A breakdown of IT specializations—Programming, Web Dev, and Business Intelligence—with a deep dive into why I chose Network Management & Security as the backbone of modern tech...",
-      date: "Oct 2025",
-      readTime: "3 min",
-      tags: ["Programming", "Web Development", "Business Intelligence", "Network Management"],
-      link: "#",
-    },
-    {
-      id: "02",
-      title: "Mastering Google Workspace & Gemini AI",
-      excerpt: "A guide to maximizing productivity using Docs, Sheets, Slides, and Drive, featuring insights on how to integrate Gemini for smarter workflows...",
-      date: "Aug 2025",
-      readTime: "4 min",
-      tags: ["Google Workspace", "Gemini AI", "Productivity"],
-      link: "#",
-    },
-    {
-      id: "03",
-      title: "Cybersecurity Essentials & Cyber Hygiene",
-      excerpt: "ey takeaways from my workshops on data privacy, protecting digital assets, and maintaining robust security practices in daily life...",
-      date: "Jun 2025",
-      readTime: "8 min",
-      tags: ["Cybersecurity", "Cyber Hygiene"],
-      link: "#",
-    },
-    {
-      id: "04",
-      title: "From Irregular Student to IT Instructor: An Unexpected Journey",
-      excerpt: "I wasn't the top of my class. I started as an Engineering student, struggled, and shifted to IT. I navigated college as an \"irregular\" student and athlete during the pandemic. Yet, I found my calling. Here is how I went from a quiet student to being recommended for a teaching position immediately after graduation...",
-      date: "May 2025",
-      readTime: "3 min",
-      tags: ["Education", "Career"],
-      link: "#",
-    },
-    {
-      id: "05",
-      title: "Building My First Network Architecture",
-      excerpt: "A retrospective on my Capstone Project: Implementing security and efficiency through Windows Server, RADIUS, and Network Access Control (NAC)...",
-      date: "Dec 2024",
-      readTime: "3 min",
-      tags: ["Network Architecture", "Windows Server", "RADIUS", "NAC"],
-      link: "#",
-    },
-    {
-      id: "06",
-      title: "I AM A WALKING PARADOX",
-      excerpt: "Exploring the duality of my life—balancing the logic of code with the chaos of sports, and the solitude of development with the public nature of teaching...",
-      date: "Nov 2024",
-      readTime: "2 min",
-      tags: ["Life", "Paradox"],
-      link: "#",
-    },
-  ];
+  const [blogPosts, setBlogPosts] = useState<BlogPost[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function fetchBlogs() {
+      try {
+        setLoading(true);
+        setError(null);
+
+        // Use the posts service to fetch latest published posts
+        const posts = await getLatestPosts(6);
+        
+        const formattedPosts: BlogPost[] = posts.map((post, index) => ({
+          id: String(index + 1).padStart(2, "0"),
+          title: post.title || "Untitled",
+          excerpt: post.excerpt || "",
+          date: formatDate(post.publishedAt),
+          readTime: estimateReadTime(post.excerpt || ""),
+          slug: post.slug,
+        }));
+
+        setBlogPosts(formattedPosts);
+      } catch (err) {
+        console.error("Error fetching blogs:", err);
+        setError("Failed to load articles");
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchBlogs();
+  }, []);
 
   return (
     <section id="blogs" className="py-24 px-6 border-t border-[#111111]/10 dark:border-white/10 transition-colors duration-300 bg-transparent">
@@ -81,12 +77,38 @@ export default function Blogs() {
               BLOGS &<br />ARTICLES
             </h2>
           </div>
-          <a href="#" className="hidden md:flex items-center gap-2 text-sm font-mono hover:underline underline-offset-4 text-[#111111] dark:text-[#F3F3F3]">
+          <a href="/blog" className="hidden md:flex items-center gap-2 text-sm font-mono hover:underline underline-offset-4 text-[#111111] dark:text-[#F3F3F3]">
             View All <ArrowUpRight size={14} />
           </a>
         </div>
 
+        {/* Loading State */}
+        {loading && (
+          <div className="flex items-center justify-center py-24">
+            <div className="flex items-center gap-3 text-[#666666] dark:text-[#999999]">
+              <Loader2 size={24} className="animate-spin" />
+              <span className="font-mono text-sm">Loading articles...</span>
+            </div>
+          </div>
+        )}
+
+        {/* Error State */}
+        {error && !loading && (
+          <div className="flex items-center justify-center py-24">
+            <p className="text-[#666666] dark:text-[#999999] font-mono text-sm">{error}</p>
+          </div>
+        )}
+
+        {/* Empty State */}
+        {!loading && !error && blogPosts.length === 0 && (
+          <div className="flex flex-col items-center justify-center py-24">
+            <p className="text-[#666666] dark:text-[#999999] font-mono text-sm mb-2">No articles published yet.</p>
+            <p className="text-[#999999] dark:text-[#666666] font-mono text-xs">Check back soon!</p>
+          </div>
+        )}
+
         {/* Smart 3-Column Grid */}
+        {!loading && !error && blogPosts.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {blogPosts.map((post, index) => {
             const total = blogPosts.length;
@@ -111,7 +133,7 @@ export default function Blogs() {
             return (
               <a
                 key={post.id}
-                href={post.link}
+                href={`/blog/${post.slug}`}
                 className={`group block bg-white dark:bg-[#111111] border border-[#111111]/10 dark:border-white/10 p-5 transition-all duration-300 hover:border-[#111111] dark:hover:border-white/30 hover:shadow-[4px_4px_0px_0px_#111111] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] ${spanClass}`}
               >
                 {/* Meta Row */}
@@ -129,29 +151,18 @@ export default function Blogs() {
                 </h3>
 
                 {/* Excerpt */}
-                <p className="text-sm text-[#666666] dark:text-[#999999] leading-relaxed mb-4 line-clamp-2">
+                <p className="text-sm text-[#666666] dark:text-[#999999] leading-relaxed mb-4 line-clamp-3">
                   {post.excerpt}
                 </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-1.5">
-                  {post.tags.slice(0, 3).map((tag) => (
-                    <span
-                      key={tag}
-                      className="text-[10px] px-2 py-0.5 bg-[#f0f0f0] dark:bg-white/10 text-[#666666] dark:text-[#999999] font-mono rounded"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
               </a>
             );
           })}
         </div>
+        )}
 
         {/* Mobile View All Link */}
         <div className="mt-8 md:hidden text-center">
-          <a href="#" className="inline-flex items-center gap-2 text-sm font-mono hover:underline underline-offset-4">
+          <a href="/blog" className="inline-flex items-center gap-2 text-sm font-mono hover:underline underline-offset-4 text-[#111111] dark:text-[#F3F3F3]">
             View All Articles <ArrowUpRight size={14} />
           </a>
         </div>
