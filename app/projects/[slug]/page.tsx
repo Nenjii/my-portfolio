@@ -129,7 +129,37 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
     <main className="min-h-screen bg-[#fafafa] dark:bg-[#0A0A0A] transition-colors duration-300">
       {/* Hero Section */}
       <div className="relative">
-        {project.coverImage && (
+        {/* Live Preview for projects with liveUrl, fallback to cover image */}
+        {project.liveUrl ? (
+          <div className="absolute inset-0 h-[50vh] overflow-hidden">
+            <div className="relative w-full h-full bg-[#1a1a1a]">
+              {/* Browser Chrome */}
+              <div className="absolute top-0 left-0 right-0 h-8 bg-[#2a2a2a] flex items-center gap-2 px-3 z-10 border-b border-white/10">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-[#ff5f57]" />
+                  <div className="w-3 h-3 rounded-full bg-[#febc2e]" />
+                  <div className="w-3 h-3 rounded-full bg-[#28c840]" />
+                </div>
+                <div className="flex-1 mx-4">
+                  <div className="bg-[#1a1a1a] rounded-md px-3 py-1 text-[10px] font-mono text-[#999999] truncate">
+                    {project.liveUrl}
+                  </div>
+                </div>
+              </div>
+              {/* Live iframe */}
+              <div className="absolute inset-0 pt-8">
+                <iframe
+                  src={project.liveUrl}
+                  className="w-full h-full border-0 pointer-events-none scale-[0.5] origin-top-left"
+                  style={{ width: "200%", height: "200%" }}
+                  title={`${project.title} preview`}
+                  loading="lazy"
+                />
+              </div>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A0A0A]/50 to-[#0A0A0A]" />
+          </div>
+        ) : project.coverImage ? (
           <div className="absolute inset-0 h-[50vh]">
             <img
               src={project.coverImage}
@@ -138,7 +168,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#0A0A0A]/50 to-[#0A0A0A]" />
           </div>
-        )}
+        ) : null}
 
         <div className="relative max-w-4xl mx-auto px-6 pt-12 pb-8">
           <Link
@@ -149,7 +179,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
             BACK TO PROJECTS
           </Link>
 
-          <div className={project.coverImage ? "pt-[30vh]" : ""}>
+          <div className={project.liveUrl || project.coverImage ? "pt-[30vh]" : ""}>
             {/* Category & Status */}
             <div className="flex items-center gap-3 mb-4">
               <span className="text-xs font-mono text-[#999999] tracking-widest">

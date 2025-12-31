@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import TypewriterText from "@/components/ui/TypewriterText";
 
 interface StatusHeaderProps {
@@ -69,13 +70,16 @@ export default function StatusHeader({
         />
       </div>
 
-      {/* Center: Logo Placeholder - Replace with your logo */}
+      {/* Center: Logo */}
       <div className="absolute left-1/2 -translate-x-1/2">
-        {/* TODO: Replace this placeholder with your actual logo */}
-        {/* Example: <Image src="/logo.png" alt="Logo" width={40} height={40} /> */}
-        <div className="w-10 h-10 border border-dashed border-[#111111]/30 dark:border-white/30 rounded flex items-center justify-center text-xs text-[#666] dark:text-[#999] font-mono">
-          LOGO
-        </div>
+        <Image 
+          src="/Portfolio_BLogo.svg" 
+          alt="Portfolio Logo" 
+          width={30} 
+          height={30}
+         
+          priority
+        />
       </div>
 
       {/* Right: Date/Time */}

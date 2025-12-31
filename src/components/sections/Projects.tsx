@@ -197,23 +197,15 @@ export default function Projects() {
                       </div>
                     </div>
                   </div>
-                  {/* Preview iframe or Cover Image */}
+                  {/* Live Preview iframe - always show live site */}
                   <div className="absolute inset-0 pt-8">
-                    {project.coverImage ? (
-                      <img 
-                        src={project.coverImage} 
-                        alt={project.title}
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <iframe
-                        src={project.liveUrl}
-                        className="w-full h-full border-0 pointer-events-none scale-[0.5] origin-top-left"
-                        style={{ width: "200%", height: "200%" }}
-                        title={`${project.title} preview`}
-                        loading="lazy"
-                      />
-                    )}
+                    <iframe
+                      src={project.liveUrl}
+                      className="w-full h-full border-0 pointer-events-none scale-[0.5] origin-top-left"
+                      style={{ width: "200%", height: "200%" }}
+                      title={`${project.title} preview`}
+                      loading="lazy"
+                    />
                   </div>
                   {/* Hover overlay */}
                   <a 

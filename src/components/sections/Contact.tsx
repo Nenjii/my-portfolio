@@ -203,8 +203,8 @@ export default function Contact() {
             {/* Dual Action Buttons */}
             <div className="flex flex-wrap gap-4 mb-8">
               <a
-                href="/resume.pdf"
-                download
+                href="/Resume_DuqueNino.pdf"
+                download="Resume_DuqueNino.pdf"
                 className="inline-flex items-center gap-2 px-6 py-3 border border-[#111111] dark:border-white text-[#111111] dark:text-white font-bold text-sm tracking-wide hover:bg-[#111111]/5 dark:hover:bg-white/10 transition-all"
               >
                 <Download size={18} />
