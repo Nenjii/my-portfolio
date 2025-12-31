@@ -10,7 +10,7 @@ import { MetadataRoute } from "next";
  * and include them here for better SEO.
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://ninoduque.vercel.app/";
+  const baseUrl = "https://ninoduque.vercel.app";
 
   // Static pages
   const staticPages: MetadataRoute.Sitemap = [
