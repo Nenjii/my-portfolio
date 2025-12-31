@@ -4,13 +4,13 @@ import { MetadataRoute } from "next";
  * Dynamic Sitemap Generator for Next.js
  * 
  * This file automatically generates sitemap.xml at build time.
- * Vercel will serve this at: https://ninoduque.dev/sitemap.xml
+ * Vercel will serve this at: https://ninoduque.vercel.app/sitemap.xml
  * 
  * For dynamic routes (blog posts, projects), you can fetch from Firebase
  * and include them here for better SEO.
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = "https://ninoduque.dev";
+  const baseUrl = "https://ninoduque.vercel.app/";
 
   // Static pages
   const staticPages: MetadataRoute.Sitemap = [

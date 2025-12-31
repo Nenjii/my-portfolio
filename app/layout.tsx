@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://ninoduque.dev"),
+  metadataBase: new URL("https://ninoduque.vercel.app"),
   title: "Niño Duque | Developer & System Administrator",
   description: "Portfolio of Niño Duque — a creative developer, system administrator, and IT instructor based in the Philippines. Specializing in web development, cybersecurity, and network infrastructure.",
   keywords: ["web developer", "system administrator", "portfolio", "Philippines", "Next.js", "React", "cybersecurity", "IT instructor"],
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://ninoduque.dev",
+    url: "https://ninoduque.vercel.app",
     siteName: "Niño Duque Portfolio",
     title: "Niño Duque | Developer & System Administrator",
     description: "Creative developer and system administrator crafting robust digital systems with clean, efficient code.",
