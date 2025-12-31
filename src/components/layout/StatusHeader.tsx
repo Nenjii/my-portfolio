@@ -18,24 +18,11 @@ export default function StatusHeader({
   timezoneLabel = "UTC+8",
 }: StatusHeaderProps) {
   const [currentTime, setCurrentTime] = useState<string | null>(null);
+  const [currentTimeShort, setCurrentTimeShort] = useState<string | null>(null);
 
   useEffect(() => {
-    // Set initial time
-    setCurrentTime(
-      new Date().toLocaleString("en-US", {
-        timeZone: timezone,
-        hour12: false,
-        month: "2-digit",
-        day: "2-digit",
-        year: "numeric",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-      })
-    );
-
-    // Update time every second
-    const timeInterval = setInterval(() => {
+    const updateTime = () => {
+      // Full format for desktop
       setCurrentTime(
         new Date().toLocaleString("en-US", {
           timeZone: timezone,
@@ -48,24 +35,40 @@ export default function StatusHeader({
           second: "2-digit",
         })
       );
-    }, 1000);
+      // Short format for mobile (time only)
+      setCurrentTimeShort(
+        new Date().toLocaleString("en-US", {
+          timeZone: timezone,
+          hour12: false,
+          hour: "2-digit",
+          minute: "2-digit",
+        })
+      );
+    };
+
+    // Set initial time
+    updateTime();
+
+    // Update time every second
+    const timeInterval = setInterval(updateTime, 1000);
 
     return () => clearInterval(timeInterval);
   }, [timezone]);
 
   return (
-    <header className="flex items-center justify-between py-4 px-6 border-b border-[#111111]/10 dark:border-white/10 fixed top-0 left-0 w-full bg-transparent backdrop-blur-sm z-40">
+    <header className="flex items-center justify-between py-4 px-4 md:px-6 border-b border-[#111111]/10 dark:border-white/10 fixed top-0 left-0 w-full bg-transparent backdrop-blur-sm z-40">
       {/* Left: Status Section */}
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 md:gap-4">
         <span className="text-xs font-medium text-[#111111] dark:text-white">Available</span>
         <div className="status-dot shrink-0"></div>
+        {/* Typewriter hidden on small screens */}
         <TypewriterText
           texts={statuses}
           typingSpeed={80}
           deletingSpeed={40}
           pauseDuration={3000}
           loop={true}
-          className="text-xs font-medium text-[#666] dark:text-[#999]"
+          className="hidden sm:block text-xs font-medium text-[#666] dark:text-[#999]"
           showCursor={false}
         />
       </div>
@@ -84,9 +87,16 @@ export default function StatusHeader({
 
       {/* Right: Date/Time */}
       {showTime && currentTime && (
-        <div className="text-xs font-mono text-[#666] dark:text-[#999]">
-          {currentTime} {timezoneLabel}
-        </div>
+        <>
+          {/* Full datetime on md+ screens */}
+          <div className="hidden md:block text-xs font-mono text-[#666] dark:text-[#999]">
+            {currentTime} {timezoneLabel}
+          </div>
+          {/* Time only on small screens */}
+          <div className="block md:hidden text-xs font-mono text-[#666] dark:text-[#999]">
+            {currentTimeShort}
+          </div>
+        </>
       )}
     </header>
   );
