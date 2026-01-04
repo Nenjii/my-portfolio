@@ -15,6 +15,15 @@ interface BlogPost {
   slug: string;
 }
 
+// Basic slugifier to avoid undefined/blank slugs.
+function toSlug(value: string): string {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 // Helper to format ISO date string to readable date
 function formatDate(isoString: string | null): string {
   if (!isoString) return "";
@@ -53,7 +62,7 @@ export default function Blogs() {
           excerpt: post.excerpt || "",
           date: formatDate(post.publishedAt),
           readTime: estimateReadTime(post.excerpt || ""),
-          slug: post.slug,
+          slug: post.slug || toSlug(post.title || ""),
         }));
 
         setBlogPosts(formattedPosts);
@@ -132,8 +141,10 @@ export default function Blogs() {
             return (
               <a
                 key={post.id}
-                href={`/blog/${post.slug}`}
+                href={`https://thewalkingparadox.vercel.app/posts/${post.slug || ""}`}
                 className={`group block bg-white dark:bg-[#111111] border border-[#111111]/10 dark:border-white/10 p-5 transition-all duration-300 hover:border-[#111111] dark:hover:border-white/30 hover:shadow-[4px_4px_0px_0px_#111111] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)] ${spanClass}`}
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 {/* Meta Row */}
                 <div className="flex items-center justify-between mb-3 text-xs font-mono text-[#666666] dark:text-[#999999]">
