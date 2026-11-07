@@ -13,10 +13,10 @@ interface RoleTypewriterProps {
 
 export default function RoleTypewriter({
   roles = [
-    "CREATIVE DEVELOPER",
+    "WEB DEVELOPER",
+    "CYBERSECURITY PROFESSIONAL",
+    "IT PROFESSOR",
     "GRAPHIC DESIGNER",
-    "NETWORK ADMINISTRATOR",
-    "SPORT ENTHUSIAST",
   ],
   typingSpeed = 100,
   deletingSpeed = 50,

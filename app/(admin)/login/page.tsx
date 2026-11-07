@@ -31,7 +31,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md rounded-xl border border-zinc-200 bg-white p-6 shadow-sm">
         <h1 className="text-2xl font-semibold text-zinc-900">Admin Login</h1>
         <p className="mt-2 text-sm text-zinc-600">
-          Sign in with your admin account to manage posts.
+          Sign in with your admin account to manage your portfolio content.
         </p>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
