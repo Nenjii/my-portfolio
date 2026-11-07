@@ -20,10 +20,10 @@ export default function Hero() {
               <div className="mb-4">
                 <RoleTypewriter
                   roles={[
-                    "CREATIVE DEVELOPER",
+                    "WEB DEVELOPER",
+                    "CYBERSECURITY PROFESSIONAL",
+                    "IT PROFESSOR",
                     "GRAPHIC DESIGNER",
-                    "NETWORK ADMINISTRATOR",
-                    "IT INSTRUCTOR",
                   ]}
                   typingSpeed={80}
                   deletingSpeed={40}
@@ -38,7 +38,7 @@ export default function Hero() {
               </h1>
 
               <p className="text-lg text-[#666666] dark:text-[#999999] leading-relaxed max-w-lg mb-8">
-                I specialize in rapid web development, blending technical precision with creative flow. I bridge the gap between complex code and user-centric design.
+                IT educator, web developer, and DICT-registered Cybersecurity Professional. I teach ethical hacking and system administration while building clean, user-focused web apps with React and Tailwind.
               </p>
 
               {/* CTA Buttons */}
@@ -62,7 +62,6 @@ export default function Hero() {
             <div className="flex justify-center lg:justify-end order-1 lg:order-2">
               <ProfileCard
                 name="NIÑO DUQUE"
-                systemId="SYS_ID // 2025"
                 imageSrc="/profile.jpg"
               />
             </div>

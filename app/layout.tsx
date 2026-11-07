@@ -19,9 +19,9 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://ninoduque.vercel.app"),
-  title: "Niño Duque | Developer & System Administrator",
-  description: "Portfolio of Niño Duque — a creative developer, system administrator, and IT instructor based in the Philippines. Specializing in web development, cybersecurity, and network infrastructure.",
-  keywords: ["web developer", "system administrator", "portfolio", "Philippines", "Next.js", "React", "cybersecurity", "IT instructor"],
+  title: "Niño Duque | Web Developer & Cybersecurity Professional",
+  description: "Portfolio of Niño Duque — web developer, DICT-registered Cybersecurity Professional, and IT educator based in the Philippines. Specializing in full-stack development, networking, and cybersecurity.",
+  keywords: ["web developer", "cybersecurity professional", "ethical hacking", "IT professor", "portfolio", "Philippines", "Next.js", "React", "Laravel", "network security"],
   authors: [{ name: "Niño Duque" }],
   creator: "Niño Duque",
   openGraph: {
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://ninoduque.vercel.app",
     siteName: "Niño Duque Portfolio",
-    title: "Niño Duque | Developer & System Administrator",
-    description: "Creative developer and system administrator crafting robust digital systems with clean, efficient code.",
+    title: "Niño Duque | Web Developer & Cybersecurity Professional",
+    description: "Web developer, cybersecurity professional, and IT educator crafting robust digital systems with clean, efficient code.",
     images: [
       {
         url: "/og-image.png",
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Niño Duque | Developer & System Administrator",
-    description: "Creative developer and system administrator crafting robust digital systems with clean, efficient code.",
+    title: "Niño Duque | Web Developer & Cybersecurity Professional",
+    description: "Web developer, cybersecurity professional, and IT educator crafting robust digital systems with clean, efficient code.",
     images: ["/og-image.png"],
   },
   robots: {

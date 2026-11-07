@@ -12,7 +12,7 @@ interface ProfileCardProps {
 
 export default function ProfileCard({
   name = "NIÑO DUQUE",
-  systemId = "SYS_ID // 2025",
+  systemId = `SYS_ID // ${new Date().getFullYear()}`,
   imageSrc = "/profile.jpg",
   imageAlt = "Profile photo",
 }: ProfileCardProps) {

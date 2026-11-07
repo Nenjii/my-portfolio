@@ -79,10 +79,10 @@ export default function About() {
           <div>
             <p className="text-xs font-mono text-[#666666] dark:text-[#999999] tracking-widest mb-6">BIO</p>
             <p className="text-lg text-[#111111] dark:text-[#F3F3F3]/80 leading-relaxed mb-6">
-              I am a multi-disciplinary developer with a focus on robust system administration and &quot;vibe coding.&quot; My journey began with a curiosity for technology and has evolved into deep expertise across Web Development, Server Management, and Cybersecurity.
+              I am a multi-disciplinary IT professional based in Isabela, Philippines — an educator, web developer, and DICT-registered Cybersecurity Professional (PCPR, Level 2). I teach Ethical Hacking, System Administration, and Networking at Cagayan State University while pursuing my Master of Science in Information Technology. My work spans full-stack development, RADIUS-based network access control, and Capture-the-Flag competitions.
             </p>
             <p className="text-lg text-[#111111] dark:text-[#F3F3F3]/80 leading-relaxed">
-             When I&apos;m not online, I am deeply active in the local sports community. I organize sports events (Badminton, Tennis, Volleyball) and train for marathons. I believe in the balance of continuous technical learning and maintaining a healthy, active lifestyle.
+             Away from the keyboard, I am a hybrid athlete and racket-sports enthusiast — I founded and lead the Jones Tennis Club, and train across tennis, badminton, and table tennis. I believe in balancing continuous technical learning with a healthy, active lifestyle.
             </p>
           </div>
 
@@ -101,15 +101,15 @@ export default function About() {
               <div>
                 <p className="text-xs font-mono text-[#666666] dark:text-[#999999] mb-3">BACKEND</p>
                 <div className="flex flex-wrap gap-2">
-                  {["VB.NET", "Node.js", "MySQL", "PHP"].map((skill) => (
+                  {["Laravel", "PHP", "Python", "VB.NET"].map((skill) => (
                     <span key={skill} className="tech-tag">{skill}</span>
                   ))}
                 </div>
               </div>
               <div>
-                <p className="text-xs font-mono text-[#666666] dark:text-[#999999] mb-3">INFRASTRUCTURE</p>
+                <p className="text-xs font-mono text-[#666666] dark:text-[#999999] mb-3">NETWORKING &amp; SECURITY</p>
                 <div className="flex flex-wrap gap-2">
-                  {["Docker", "Linux", "VMWare", "Windows Server"].map((skill) => (
+                  {["Windows Server", "MikroTik", "RADIUS NAC", "Ethical Hacking"].map((skill) => (
                     <span key={skill} className="tech-tag">{skill}</span>
                   ))}
                 </div>

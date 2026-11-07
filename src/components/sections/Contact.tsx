@@ -180,7 +180,7 @@ export default function Contact() {
                 </span>
               </button>
               <button
-                onClick={() => copyToClipboard("+63 905 8840 820", "phone")}
+                onClick={() => copyToClipboard("+63 952 395 7354", "phone")}
                 className="flex items-center gap-4 group cursor-pointer hover:opacity-70 transition-opacity"
               >
                 <span className="text-xs font-mono text-[#666666] dark:text-[#999999]">[PHONE]</span>
@@ -192,7 +192,7 @@ export default function Contact() {
                     </>
                   ) : (
                     <>
-                      +63 905 8840 820
+                      +63 952 395 7354
                       <Copy size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                     </>
                   )}
