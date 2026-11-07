@@ -118,9 +118,9 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "completed": return "bg-green-500/20 text-green-400";
-      case "in-progress": return "bg-yellow-500/20 text-yellow-400";
-      case "planned": return "bg-blue-500/20 text-blue-400";
+      case "completed": return "bg-green-500/15 text-green-800 dark:text-green-400";
+      case "in-progress": return "bg-yellow-500/15 text-yellow-800 dark:text-yellow-400";
+      case "planned": return "bg-blue-500/15 text-blue-800 dark:text-blue-400";
       default: return "bg-gray-500/20 text-gray-400";
     }
   };
@@ -154,6 +154,8 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
                   style={{ width: "200%", height: "200%" }}
                   title={`${project.title} preview`}
                   loading="lazy"
+                  aria-hidden="true"
+                  tabIndex={-1}
                 />
               </div>
             </div>
@@ -189,7 +191,7 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
                 {project.status?.toUpperCase()}
               </span>
               {project.featured && (
-                <span className="text-xs font-mono px-2 py-0.5 bg-blue-500/20 text-blue-400 rounded">
+                <span className="text-xs font-mono px-2 py-0.5 bg-blue-500/15 text-blue-800 dark:text-blue-400 rounded">
                   FEATURED
                 </span>
               )}

@@ -73,9 +73,9 @@ export default function Projects() {
   // Get status badge color
   const getStatusColor = (status: string) => {
     switch (status) {
-      case "completed": return "bg-green-500/20 text-green-400";
-      case "in-progress": return "bg-yellow-500/20 text-yellow-400";
-      case "planned": return "bg-blue-500/20 text-blue-400";
+      case "completed": return "bg-green-500/15 text-green-800 dark:text-green-400";
+      case "in-progress": return "bg-yellow-500/15 text-yellow-800 dark:text-yellow-400";
+      case "planned": return "bg-blue-500/15 text-blue-800 dark:text-blue-400";
       default: return "bg-gray-500/20 text-gray-400";
     }
   };
@@ -209,6 +209,8 @@ export default function Projects() {
                       style={{ width: "200%", height: "200%" }}
                       title={`${project.title} preview`}
                       loading="lazy"
+                      aria-hidden="true"
+                      tabIndex={-1}
                     />
                   </div>
                   {/* Hover overlay */}

@@ -111,7 +111,7 @@ export default function Blogs() {
         {!loading && !error && blogPosts.length === 0 && (
           <div className="flex flex-col items-center justify-center py-24">
             <p className="text-[#666666] dark:text-[#999999] font-mono text-sm mb-2">No articles published yet.</p>
-            <p className="text-[#999999] dark:text-[#666666] font-mono text-xs">Check back soon!</p>
+            <p className="text-[#666666] dark:text-[#999999] font-mono text-xs">Check back soon!</p>
           </div>
         )}
 

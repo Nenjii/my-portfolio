@@ -118,7 +118,7 @@ export default function ExperiencePage() {
                     <Calendar size={14} className={index % 2 === 0 ? "md:order-last" : ""} />
                     {formatDateRange(exp.startDate, exp.endDate, exp.isCurrent)}
                   </div>
-                  <p className="text-xs font-mono text-[#999999] dark:text-[#666666] mt-1">
+                  <p className="text-xs font-mono text-[#666666] dark:text-[#999999] mt-1">
                     {calculateDuration(exp.startDate, exp.endDate, exp.isCurrent)}
                   </p>
                 </div>
@@ -128,7 +128,7 @@ export default function ExperiencePage() {
                   <div className="group bg-white dark:bg-[#111111] border border-[#111111]/10 dark:border-white/10 p-6 hover:border-[#111111] dark:hover:border-white/30 transition-all duration-300 hover:shadow-[4px_4px_0px_0px_#111111] dark:hover:shadow-[4px_4px_0px_0px_rgba(255,255,255,0.2)]">
                     {/* Status badge */}
                     {exp.isCurrent && (
-                      <span className="inline-block text-xs font-mono px-2 py-0.5 bg-green-500/20 text-green-500 rounded mb-3">
+                      <span className="inline-block text-xs font-mono px-2 py-0.5 bg-green-500/15 text-green-800 dark:text-green-400 rounded mb-3">
                         CURRENT POSITION
                       </span>
                     )}
@@ -155,7 +155,7 @@ export default function ExperiencePage() {
                           href={exp.companyUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-sm font-mono text-blue-500 hover:text-blue-400 flex items-center gap-1"
+                          className="text-sm font-mono text-blue-700 dark:text-blue-400 hover:text-blue-900 dark:hover:text-blue-300 flex items-center gap-1"
                         >
                           <ExternalLink size={14} />
                           Website

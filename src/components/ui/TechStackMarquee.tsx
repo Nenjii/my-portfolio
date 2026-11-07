@@ -10,7 +10,6 @@ const techStack = [
   { name: "Node.js", logo: "/logos/nodejs.svg" },
   { name: "Docker", logo: "/logos/docker.svg" },
   { name: "Linux", logo: "/logos/linux.svg" },
-  { name: "MySQL", logo: "/logos/mysql.svg" },
   { name: "VB.NET", logo: "/logos/vbnet.svg" },
 ];
 

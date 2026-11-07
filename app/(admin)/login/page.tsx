@@ -36,8 +36,9 @@ export default function LoginPage() {
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-zinc-700">Email</label>
+            <label htmlFor="login-email" className="block text-sm font-medium text-zinc-700">Email</label>
             <input
+              id="login-email"
               type="email"
               autoComplete="email"
               required
@@ -47,8 +48,9 @@ export default function LoginPage() {
             />
           </div>
           <div className="space-y-2">
-            <label className="block text-sm font-medium text-zinc-700">Password</label>
+            <label htmlFor="login-password" className="block text-sm font-medium text-zinc-700">Password</label>
             <input
+              id="login-password"
               type="password"
               autoComplete="current-password"
               required

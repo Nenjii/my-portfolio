@@ -156,7 +156,7 @@ export default function About() {
                         {formatDateRange(exp.startDate, exp.endDate, exp.isCurrent)}
                       </div>
                       {exp.isCurrent && (
-                        <span className="text-xs font-mono px-2 py-0.5 bg-green-500/20 text-green-500 rounded">
+                        <span className="text-xs font-mono px-2 py-0.5 bg-green-500/15 text-green-800 dark:text-green-400 rounded">
                           CURRENT
                         </span>
                       )}
