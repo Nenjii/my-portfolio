@@ -79,7 +79,7 @@ export default function About() {
           <div>
             <p className="text-xs font-mono text-[#666666] dark:text-[#999999] tracking-widest mb-6">BIO</p>
             <p className="text-lg text-[#111111] dark:text-[#F3F3F3]/80 leading-relaxed mb-6">
-              I am a multi-disciplinary IT professional based in Isabela, Philippines — an educator, web developer, and DICT-registered Cybersecurity Professional (PCPR, Level 2). I teach Ethical Hacking, System Administration, and Networking at Cagayan State University while pursuing my Master of Science in Information Technology. My work spans full-stack development, RADIUS-based network access control, and Capture-the-Flag competitions.
+              I am a multi-disciplinary IT professional from Isabela, Philippines — currently a graphic designer and web developer at ArtHaus in Tuguegarao City, and a DICT-registered Cybersecurity Professional (PCPR, Level 2). I previously spent two years as a part-time IT instructor at Cagayan State University, teaching Ethical Hacking, System Administration, and Networking, and I am pursuing my Master of Science in Information Technology. My work spans full-stack development, RADIUS-based network access control, and Capture-the-Flag competitions.
             </p>
             <p className="text-lg text-[#111111] dark:text-[#F3F3F3]/80 leading-relaxed">
              Away from the keyboard, I am a hybrid athlete — I founded and lead the Jones Tennis Club and compete across racket sports (tennis, badminton, table tennis), while also playing basketball and volleyball and training for marathons. I believe in balancing continuous technical learning with a healthy, active lifestyle.

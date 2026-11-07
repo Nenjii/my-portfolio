@@ -38,7 +38,7 @@ export default function Hero() {
               </h1>
 
               <p className="text-lg text-[#666666] dark:text-[#999999] leading-relaxed max-w-lg mb-8">
-                IT educator, web developer, and DICT-registered Cybersecurity Professional. I teach ethical hacking and system administration while building clean, user-focused web apps with React and Tailwind.
+                Graphic designer and web developer at ArtHaus, DICT-registered Cybersecurity Professional, and former university IT instructor. I build clean, user-focused web apps with React and Tailwind.
               </p>
 
               {/* CTA Buttons */}
