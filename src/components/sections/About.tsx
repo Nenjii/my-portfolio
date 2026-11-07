@@ -82,7 +82,7 @@ export default function About() {
               I am a multi-disciplinary IT professional based in Isabela, Philippines — an educator, web developer, and DICT-registered Cybersecurity Professional (PCPR, Level 2). I teach Ethical Hacking, System Administration, and Networking at Cagayan State University while pursuing my Master of Science in Information Technology. My work spans full-stack development, RADIUS-based network access control, and Capture-the-Flag competitions.
             </p>
             <p className="text-lg text-[#111111] dark:text-[#F3F3F3]/80 leading-relaxed">
-             Away from the keyboard, I am a hybrid athlete and racket-sports enthusiast — I founded and lead the Jones Tennis Club, and train across tennis, badminton, and table tennis. I believe in balancing continuous technical learning with a healthy, active lifestyle.
+             Away from the keyboard, I am a hybrid athlete — I founded and lead the Jones Tennis Club and compete across racket sports (tennis, badminton, table tennis), while also playing basketball and volleyball and training for marathons. I believe in balancing continuous technical learning with a healthy, active lifestyle.
             </p>
           </div>
 
