@@ -12,6 +12,10 @@ const firebaseConfig = {
 
 // Initialize Firebase only if it hasn't been initialized
 const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0];
+
+// Firestore — public content reads + admin CRUD.
+// NOTE: Auth and Storage live in `@/lib/cms/firebase` so the public bundle
+// never pulls in firebase/auth or firebase/storage (admin-only concerns).
 const db = getFirestore(app);
 
 export { app, db };

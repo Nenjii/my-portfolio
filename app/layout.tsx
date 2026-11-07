@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import CursorSpotlight from "@/components/layout/CursorSpotlight";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
-import ScrollProgress from "@/components/ui/ScrollProgress";
-import BackToTop from "@/components/ui/BackToTop";
-import AnimatedBackground from "@/components/ui/AnimatedBackground";
+import SiteChrome from "@/components/layout/SiteChrome";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -87,12 +84,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         suppressHydrationWarning
       >
-        <AnimatedBackground />
         <ThemeProvider>
-          <ScrollProgress />
-          <CursorSpotlight />
-          {children}
-          <BackToTop />
+          <SiteChrome>{children}</SiteChrome>
         </ThemeProvider>
       </body>
     </html>
