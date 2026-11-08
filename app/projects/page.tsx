@@ -3,7 +3,9 @@
 import { useState, useEffect, useMemo } from "react";
 import { ArrowLeft, ExternalLink, Github, Search, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { getPublishedProjects, Project } from "@/lib/projects";
+import { canOptimize } from "@/lib/image";
 import { SkeletonCard } from "@/components/ui/LoadingSpinner";
 
 export default function ProjectsPage() {
@@ -153,10 +155,13 @@ export default function ProjectsPage() {
                 {/* Cover Image */}
                 {project.coverImage && (
                   <div className="relative w-full h-48 overflow-hidden">
-                    <img 
-                      src={project.coverImage} 
+                    <Image
+                      src={project.coverImage}
                       alt={project.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 400px"
+                      unoptimized={!canOptimize(project.coverImage)}
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     {project.featured && (
                       <span className="absolute top-3 left-3 text-xs font-mono px-2 py-1 bg-blue-700 text-white rounded">

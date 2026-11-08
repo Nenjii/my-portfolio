@@ -1,13 +1,14 @@
 import { MetadataRoute } from "next";
+import { getPublishedProjects } from "@/lib/projects";
 
 /**
  * Dynamic Sitemap Generator for Next.js
- * 
- * This file automatically generates sitemap.xml at build time.
- * Vercel will serve this at: https://ninoduque.vercel.app/sitemap.xml
- * 
- * For dynamic routes (blog posts, projects), you can fetch from Firebase
- * and include them here for better SEO.
+ *
+ * Generates sitemap.xml at build time, served at /sitemap.xml.
+ * Includes the static pages plus a URL per published project
+ * (/projects/[slug]). Project fetching is wrapped in try/catch so a
+ * Firestore hiccup at build time degrades to the static pages instead of
+ * failing the build.
  */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = "https://ninoduque.vercel.app";
@@ -40,17 +41,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // TODO: Optionally fetch dynamic blog/project slugs from Firebase
-  // and add them to the sitemap for full SEO coverage
-  // 
-  // Example:
-  // const posts = await getAllPublishedPosts();
-  // const blogPages = posts.map((post) => ({
-  //   url: `${baseUrl}/blog/${post.slug}`,
-  //   lastModified: new Date(post.updatedAt),
-  //   changeFrequency: "monthly" as const,
-  //   priority: 0.6,
-  // }));
+  // Dynamic: one URL per published project detail page
+  let projectPages: MetadataRoute.Sitemap = [];
+  try {
+    const projects = await getPublishedProjects();
+    projectPages = projects
+      .filter((p) => p.slug)
+      .map((p) => ({
+        url: `${baseUrl}/projects/${p.slug}`,
+        lastModified: p.updatedAt ? new Date(p.updatedAt) : new Date(),
+        changeFrequency: "monthly" as const,
+        priority: 0.6,
+      }));
+  } catch (error) {
+    console.warn("sitemap: could not fetch projects, using static pages only:", error);
+  }
 
-  return [...staticPages];
+  return [...staticPages, ...projectPages];
 }

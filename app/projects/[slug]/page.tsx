@@ -3,7 +3,9 @@
 import { useEffect, useState } from "react";
 import { ArrowLeft, ExternalLink, Github, Calendar, Loader2 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import { getProjectBySlug, Project } from "@/lib/projects";
+import { canOptimize } from "@/lib/image";
 
 // Simple markdown-like parser for rich text
 function parseContent(content: string): React.ReactNode {
@@ -163,10 +165,14 @@ export default function ProjectDetailPage({ params }: { params: Promise<{ slug: 
           </div>
         ) : project.coverImage ? (
           <div className="absolute inset-0 h-[50vh]">
-            <img
+            <Image
               src={project.coverImage}
               alt={project.title}
-              className="w-full h-full object-cover"
+              fill
+              sizes="100vw"
+              priority
+              unoptimized={!canOptimize(project.coverImage)}
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#fafafa]/50 dark:via-[#0A0A0A]/50 to-[#fafafa] dark:to-[#0A0A0A]" />
           </div>
